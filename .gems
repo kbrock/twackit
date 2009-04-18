@@ -1,4 +1,4 @@
-jnunemaker-twitter --version 0.6.6 --source http://gems.github.com
+jnunemaker-twitter --version 0.4.1 --source http://gems.github.com
 haml --version 2.0.9
 gchartrb
 mislav-will_paginate --source http://gems.github.com
