@@ -79,7 +79,12 @@ body {
     -webkit-border-radius: 8px;
 }
 
-#content .two-col .left-col {
+#content.home {
+    background-image: url(/images/screenshot.png);
+    background-repeat: no-repeat;
+    background-position: 660px 100px;
+}
+#content.home p {
     width: 60%;
 }
 

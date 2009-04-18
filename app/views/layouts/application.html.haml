@@ -26,7 +26,7 @@
         %h1= link_to 'Twackit', root_path
         %p Whatever it is, track it with Twackit!
     
-      #content
+      #content{ :class => controller.controller_name }
         .work-in-progress
           Thanks for visiting! Twackit is still a work 
           in progress, but your
