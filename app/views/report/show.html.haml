@@ -1,0 +1,60 @@
+%h3
+  == #{link_to(@report.twitter_username, "http://twitter.com/#{@report.twitter_username}")}'s
+  = @report.title
+  Report
+
+- if @report.tweets.any?
+
+  %ul.tabs
+    %li 
+      %a Chart
+      %a Calendar
+      %a Table
+      %a Stats
+
+  #chart
+    %h4 Chart
+    %p
+      = chart(@report)
+
+
+  #calendar
+    %h4 Calendar
+    - date = 2.months.ago.to_date
+    - 3.times do
+      = tweet_calendar(date)
+      - date >>= 1
+
+
+  #raw-data  
+    %h4 Raw Data
+    %table.raw-data
+      %thead
+        %tr
+          %th Value
+          %th Created
+      %tbody
+        - for tweet in @report.tweets
+          %tr
+            %th= tweet.data
+            %td= tweet.status_at.to_s(:short)
+
+  #stats
+    %h4 Stats
+    %dl
+      %dt Low
+      %dd= @report.stats[:min]
+
+      %dt High
+      %dd= @report.stats[:max]
+
+      %dt Average
+      %dd= @report.stats[:avg]
+
+      %dt Change
+      %dd== #{@report.stats[:amount_change]} (#{number_to_percentage(@report.stats[:percent_change], :precision => 2)})
+
+
+
+- else
+  %p No data.
