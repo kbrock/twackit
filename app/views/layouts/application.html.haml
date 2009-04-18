@@ -16,10 +16,10 @@
 
         #report-form
           - form_tag root_path do
-            http://www.twackit.com/
-            = text_field_tag :twitter_username, @twitter_username || 'your Twitter username'
+            http://twackit.com/
+            = text_field_tag :twitter_username, @twitter_username || 'your Twitter username', :onfocus => 'this.select();'
             = '/'
-            = text_field_tag :hashtag, @hashtag || 'your twacking hashtag'
+            = text_field_tag :hashtag, @hashtag || 'your twacking hashtag', :onfocus => 'this.select();'
             = submit_tag 'Report'
 
   
