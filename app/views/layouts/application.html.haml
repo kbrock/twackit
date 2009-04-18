@@ -23,16 +23,25 @@
             = submit_tag 'Report &raquo;'
 
   
-        %h1
-          = link_to 'Twackit', root_path
+        %h1= link_to 'Twackit', root_path
         %p Whatever it is, track it with Twackit!
     
       #content
+        .work-in-progress
+          Thanks for visiting! Twackit is still a work 
+          in progress, but your
+          %strong= link_to_function 'feedback', "UserVoice.Popin.show()"
+          is appreciated.
+          
+          
         /= flash_messages
         = yield
 
       #footer
         %p
           Copyright &copy; 2009, 
-          == #{link_to 'twackit.com', 'http://www.twackit.com'}.
-          All rights reserved.
+          == #{link_to 'Jeremy Weiskotten', 'http://weiskotten.com'}.
+          %strong= link_to_function 'Feedback', "UserVoice.Popin.show()"
+
+    = render :partial => 'layouts/uservoice'
+    = render :partial => 'layouts/google_analytics'

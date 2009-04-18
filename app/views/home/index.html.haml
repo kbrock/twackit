@@ -2,33 +2,33 @@
   .left-col
     %p
       %strong Welcome to Twackit, 
-      where you can track just about anything 
-      using your Twitter account and observe trends over 
-      time.
-  
-    %h2
-      Just tweet to 
-      %strong @twackit
-      with a value and a hashtag.
+      where you can use your Twitter account to track just about anything and
+      observe trends over time.
         
+    %h2
+      Just tweet a value and hashtag to 
+      == #{link_to '@twackit', 'http://twitter.com/twackit'}.      
+
     %p
-      Twackit will see your tweets and give you simple reports.
-      
-    %p
-      You can track &mdash; er, 
-      %em twack 
-      &mdash; as many things as you like. Just pick meaningful hashtags to 
-      categorize your twacks!
-      You can even include a note if you'd like. 
-  
+      Twackit will see your tweets and generate simple reports.      
+      You can twack as many things as you like. Just pick meaningful hashtags to 
+      %strong categorize 
+      your twacks! You can even include a 
+      %strong note 
+      if you'd like. 
+        
     %p
       Here are some examples to get you started&hellip;
   
     %blockquote.tweet @twackit 165 #weight
     %blockquote.tweet @twackit 5:30 #sleep baby was up all night
 
+    %br
+    
     %p
-      Use more than one hashtag if you want to drill down in different ways.
+      Use more than one hashtag if you want to 
+      %strong drill down 
+      in different ways.
 
     %blockquote.tweet @twackit $1.50 #expenses #tolls
     %blockquote.tweet @twackit $7.35 #expenses #lunch Mel's Diner

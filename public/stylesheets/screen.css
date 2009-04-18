@@ -1,13 +1,9 @@
-* {
-    font-size: 10px;
-    font-family: sans-serif;
-}
-
 body {
-    background: #fff;
+    background: #eee;
 }
 
 #page {
+    font-family: helvetica,verdana,arial,sans-serif;
     width: 970px;
     margin: 0 auto;
     position: relative;
@@ -33,17 +29,24 @@ body {
 }
 
 #header h1 a {
-    background: transparent url(/images/header-logo.png) no-repeat scroll 0 0;
-    display: block;
-    height: 32px;
-    text-indent:-800em;
-    width: 100px;
+    text-transform: lowercase;
+    color: #333;
+    font-size: 48px;
+    font-family: 'cooper std',georgia,times,serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: italic;
+/*    display: block;    */
+/*    width: 100px;*/
+/*    height: 32px;*/
+/*    text-indent:-800em;*/
+/*    background: transparent url(/images/header-logo.png) no-repeat scroll 0 0;*/
 }
 #header p {
-    color: #fff;
-    font-size: 60%;
-    font-family: Arial;
-    text-transform: uppercase;
+    color: #666;
+    font-size: 90%;
+    font-family: helvetica,verdana,arial,sans-serif;
+/*    text-transform: uppercase;*/
     margin-left: 4px;
 }
 
@@ -51,39 +54,47 @@ body {
     clear: both;
     padding: 2em;
     font-size: 80%;
-    color: #aaa;
+    color: #999;
 }
 #footer p {
     text-align: center;
 }
 #footer a {
-    color: #ccc;
+    color: #666;
     text-decoration: none;
 }
 #footer a:hover {
-    color: #fff;
-    border-bottom: 1px dotted #fff;
+    color: #333;
+    border-bottom: 1px dotted #333;
 }
 
 #content {
-    padding: 16px 16px;
+    padding: 1em;
     font-size: 90%;
     background: #fff;
+    border: 2px solid #ccc;
+    color: #333;
 
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
 }
 
+#content .two-col .left-col {
+    width: 60%;
+}
+
 #content h2 {
-    font-size: 300%;
+    font-size: 200%;
     font-weight: normal;
+    font-family: Georgia, Times, serif;
     color: #333;
     margin-bottom: .5em;
+    
 }
 
 #content h3 {
     font-size: 140%;
-    font-weight: normal;
+    font-weight: bold;
     color: #333;
     margin-bottom: 1em;
 }
@@ -99,26 +110,14 @@ body {
 }
 
 #content a {
-    color: #69f;
+    color: #36c;
     text-decoration: none;
 }
 #content a:hover {
-    border-bottom: 1px dotted #69f;
+    color: #69f;
 }
 
 #chart {
-}
-
-#stats {
-    width: 200px;
-}
-#stats dl {
-}
-#stats dl dt {
-    float: left;
-    width: 4em;
-    margin-right: 2em;
-    font-weight: bold;
 }
 
 #calendar {
@@ -172,10 +171,25 @@ table.calendar td {
     text-align: right;
 }
 
-#raw-data {
+#stats {
     clear: both;
+    width: 300px;
     padding-top: 2em;
 }
+#stats dl {
+}
+#stats dl dt {
+    float: left;
+    width: 4em;
+    margin-right: 2em;
+    font-weight: bold;
+}
+
+#raw-data {
+    padding-top: 2em;
+    width: 300px;
+}
+
 #raw-data table tbody td,
 #raw-data table tbody th {
     padding: .25em 1em 0 .5em;
@@ -184,9 +198,6 @@ table.calendar td {
 }
 #raw-data table thead th {
     background: #eee;
-/*    border-top: 1px solid #333;*/
-/*    border-bottom: 1px solid #333;*/
-/*    color: #fff;*/
     padding: .5em 1em .25em .5em;
     text-align: left;
     font-size: 80%;
@@ -195,13 +206,23 @@ table.calendar td {
 
 blockquote.tweet {
     width: 30em;
-    margin: .5em 0 .5em 2em;
-    background: #f4f4f4;
-/*    border: 1px dashed #999;*/
-    padding: 1em;
-    font-size: 110%;
+    margin: .5em 0;
+    background: #eef;
+    border-left: 2px solid #ccf;
+    padding: .5em;
+    font-family: Consolas, Monaco, monospace;
 }
 
 .highlight {
     background: #ff9;
 }
+
+.work-in-progress {
+    background: #ffc;
+    font-size: 120%;
+    padding: .75em 1em;
+    margin-bottom: 1em;
+    border: 1px solid #eeb;
+}
+
+.tabs { display: none; }

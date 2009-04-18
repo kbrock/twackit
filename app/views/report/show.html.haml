@@ -25,20 +25,6 @@
       = tweet_calendar(date)
       - date >>= 1
 
-
-  #raw-data  
-    %h4 Raw Data
-    %table.raw-data
-      %thead
-        %tr
-          %th Value
-          %th Created
-      %tbody
-        - for tweet in @report.tweets
-          %tr
-            %th= tweet.data
-            %td= tweet.status_at.to_s(:short)
-
   #stats
     %h4 Stats
     %dl
@@ -54,7 +40,19 @@
       %dt Change
       %dd== #{@report.stats[:amount_change]} (#{number_to_percentage(@report.stats[:percent_change], :precision => 2)})
 
-
+  #raw-data  
+    %h4 Raw Data
+    %table.raw-data
+      / %thead
+      /   %tr
+      /     %th Value
+      /     %th Created
+      %tbody
+        - for tweet in @report.tweets
+          %tr
+            %th= tweet.data
+            %td= tweet.status_at.to_s(:short)
+    
 
 - else
   %p No data.
