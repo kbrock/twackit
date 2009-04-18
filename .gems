@@ -1,5 +1,6 @@
 crack
 httparty
+oauth
 jnunemaker-twitter --source http://gems.github.com
 haml --version 2.0.9
 gchartrb
