@@ -1,2 +1,2 @@
-TWITTER_ID = "jw111"
+TWITTER_ID = "twackit"
 AT_TWITTER_ID = "@#{TWITTER_ID}"
