@@ -17,7 +17,6 @@ body {
     float: right; 
     color: #444; 
     background-color: #ccc;
-/*    margin-top: 20px;*/
     margin: 0;
     padding: 1em;
     -moz-border-radius-bottomleft: 8px;
@@ -38,24 +37,26 @@ body {
     padding-top: 14px;   
 }
 #header h1 a {
-    text-transform: lowercase;
     color: #333;
     font-size: 40px;
     font-family: 'cooper std',georgia,times,serif;
     font-weight: bold;
     text-decoration: none;
     font-style: italic;
-/*    display: block;    */
-/*    width: 100px;*/
-/*    height: 32px;*/
-/*    text-indent:-800em;*/
-/*    background: transparent url(/images/header-logo.png) no-repeat scroll 0 0;*/
+    letter-spacing: -1px;
+
+    /* hide the text and show logo image */
+    text-indent:-800em;
+    display: block;    
+    width: 155px;
+    height: 34px;
+    background: transparent url(/images/logo.png) no-repeat scroll 0 0;
 }
 #header p {
     color: #666;
     font-size: 70%;
     margin-left: 4px;
-    margin-top: -4px;
+    margin-top: 2px;
 }
 
 #footer {
