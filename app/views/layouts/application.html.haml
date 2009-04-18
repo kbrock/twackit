@@ -39,8 +39,9 @@
       #footer
         %p
           Copyright &copy; 2009, 
-          == #{link_to 'Jeremy Weiskotten', 'http://weiskotten.com'}.
+          == #{link_to 'Jeremy Weiskotten', 'http://twitter.com/doctorzaius'}.
           %strong= link_to_function 'Feedback', "UserVoice.Popin.show()"
 
+    / = render :partial => 'layouts/twitter' if @twitter
     = render :partial => 'layouts/uservoice'
     = render :partial => 'layouts/google_analytics'

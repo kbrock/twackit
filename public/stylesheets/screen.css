@@ -63,13 +63,14 @@ body {
     clear: both;
     padding: 2em;
     font-size: 80%;
-    color: #999;
+    color: #666;
+    background: #ccc;
 }
 #footer p {
     text-align: center;
 }
 #footer a {
-    color: #666;
+    color: #333;
     text-decoration: none;
 }
 #footer a:hover {
@@ -84,8 +85,10 @@ body {
     border: 4px solid #ccc;
     color: #333;
 
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-radius-topleft: 8px;
+    -webkit-border-radius-topright: 8px;
 }
 
 #content.home {
