@@ -1,0 +1,4 @@
+twitter --version 0.6.6 --source http://gems.github.com
+haml --version 2.0.9
+gchartrb --lib google_chart
+mislav-will_paginate --lib will_paginate --source http://gems.github.com
