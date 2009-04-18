@@ -20,7 +20,7 @@
             = text_field_tag :twitter_username, @twitter_username || 'your Twitter username'
             = '/'
             = text_field_tag :hashtag, @hashtag || 'your twacking hashtag'
-            = submit_tag 'Report &raquo;'
+            = submit_tag 'Report'
 
   
         %h1= link_to 'Twackit', root_path
@@ -28,8 +28,7 @@
     
       #content{ :class => controller.controller_name }
         .work-in-progress
-          Thanks for visiting! Twackit is still a work 
-          in progress, but your
+          Thanks for visiting! Twackit is still a work in progress, but your
           %strong= link_to_function 'feedback', "UserVoice.Popin.show()"
           is appreciated.
           

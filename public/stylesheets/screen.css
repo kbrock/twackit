@@ -1,5 +1,7 @@
 body {
     background: #eee;
+    background-image: url(/images/gradient-page.png);
+    background-repeat: repeat-x;
 }
 
 #page {
@@ -16,16 +18,20 @@ body {
 #header #report-form { 
     float: right; 
     color: #666; 
-    font-size: 80%;
-    padding-top: 20px;
+    background-color: #ddd;
+    margin-top: 20px;
+    padding: .5em 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    font-size: 90%;
 }
 #header #report-form input[type=text] {
-    border: 1px solid #333;
-    padding: 4px;
-    font-size: 100%;
+    border: 1px solid #999;
+    background: #f8f8f8;
+    padding: 2px;
+    width: 12em;
 }
 #header #report-form input[type=submit] {
-    font-size: 100%;
 }
 
 #header h1 a {
@@ -82,7 +88,7 @@ body {
 #content.home {
     background-image: url(/images/screenshot.png);
     background-repeat: no-repeat;
-    background-position: 660px 100px;
+    background-position: 640px 80px;
 }
 #content.home p {
     width: 60%;
@@ -94,7 +100,7 @@ body {
     font-family: Georgia, Times, serif;
     color: #333;
     margin-bottom: .5em;
-    
+    letter-spacing: -2px;
 }
 
 #content h3 {
@@ -213,9 +219,9 @@ blockquote.tweet {
     width: 30em;
     margin: .5em 0;
     background: #eef;
-    border-left: 2px solid #ccf;
-    padding: .5em;
+    padding: 1em;
     font-family: Consolas, Monaco, monospace;
+    -moz-border-radius: 8px;
 }
 
 .highlight {
@@ -225,7 +231,7 @@ blockquote.tweet {
 .work-in-progress {
     background: #ffc;
     font-size: 120%;
-    padding: .75em 1em;
+    padding: .75em;
     margin-bottom: 1em;
     border: 1px solid #eeb;
 }
