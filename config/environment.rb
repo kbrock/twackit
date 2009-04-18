@@ -28,6 +28,8 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   # config.gem "dancroak-twitter-search", :lib => "twitter_search", :source => "http://gems.github.com"
+
+  # note: need to add gems to .gems for heroku
   config.gem "jnunemaker-twitter", :lib => 'twitter', :version => '0.6.6', :source => "http://gems.github.com"
   config.gem 'haml', :version => '2.0.9'
   config.gem 'gchartrb', :lib => 'google_chart'

@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   def index
     if params[:import] == 'now'
-      raise 'importing'
       TwitterImporter.import!
     end
     
