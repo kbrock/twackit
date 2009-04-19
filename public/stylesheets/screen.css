@@ -44,7 +44,7 @@ body {
 }
 
 #header h1 {
-    padding-top: 14px;   
+    padding-top: 7px;
 }
 #header h1 a {
     color: #333;
@@ -54,6 +54,7 @@ body {
     text-decoration: none;
     font-style: italic;
     letter-spacing: -1px;
+    text-transform: lowercase;
 
     /* hide the text and show logo image */
     text-indent:-800em;
