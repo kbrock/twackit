@@ -3,7 +3,7 @@ class Tweet < ActiveRecord::Base
 
   has_many :hashtags, :dependent => :destroy
 
-  validates_presence_of :status_id, :status_at, :from_user  , :status, :data
+  validates_presence_of :status_id, :status_at, :from_user, :status, :data
   # validates_associated :hashtags
   
   before_validation_on_create :parse_status

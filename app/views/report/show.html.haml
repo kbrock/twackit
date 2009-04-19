@@ -11,6 +11,10 @@
   = @report.title
   Report
 
+%p{ :style => 'float: right;' }
+  Updated
+  %strong= @report.tweets.last.status_at.to_s(:long)
+
 - if @report.tweets.any?
 
   %ul.tabs
