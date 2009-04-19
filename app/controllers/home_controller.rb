@@ -10,7 +10,8 @@ class HomeController < ApplicationController
     end
   end
   
-  def report
+  def faq
+    
   end
 
 end

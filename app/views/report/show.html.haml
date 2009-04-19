@@ -1,4 +1,6 @@
-%h3
+- title "#{@report.twitter_username} / #{@report.title}"
+
+%h2
   == #{link_to(@report.twitter_username, "http://twitter.com/#{@report.twitter_username}")}'s
   = @report.title
   Report

@@ -3,8 +3,10 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   map.root :controller => "home"
-  map.connect 'report', :controller => 'home', :action => 'report'
+  map.faq 'faq', :controller => 'home', :action => 'faq'
+
   map.report ':twitter_username/:hashtag', :controller => 'report', :action => 'show'
+
   # map.report 'r/:twitter_username/:hashtag', :controller => 'report', :action => 'show'
 
   # Sample of regular route:

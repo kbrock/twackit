@@ -9,7 +9,6 @@ body {
     position: relative;
 }
 
-
 #header {
     padding: 0 0 10px;
 }
@@ -31,6 +30,17 @@ body {
     width: 12em;
 }
 #header #report-form input[type=submit] {
+    color: #eef;
+    font-weight: bold;
+    background: #36c url(/images/gradient-button.png) repeat-x;
+    border: 1px solid #36c;
+
+    -moz-border-radius: .5em;
+    -webkit-border-radius: .5em;
+}
+#header #report-form input[type=submit]:hover {
+    color: #fff;
+    border-color: #039;
 }
 
 #header h1 {
@@ -61,13 +71,14 @@ body {
 
 #footer {
     clear: both;
-    padding: 2em;
-    font-size: 80%;
     color: #666;
     background: #ccc;
+    padding-bottom: 1em;
 }
 #footer p {
     text-align: center;
+    font-size: 70%;
+    padding: 1em 0 0;
 }
 #footer a {
     color: #333;
@@ -91,7 +102,7 @@ body {
     -webkit-border-radius-topright: 8px;
 }
 
-#content.home {
+#content.home.index {
     background-image: url(/images/screenshot.png);
     background-repeat: no-repeat;
     background-position: 640px 80px;
@@ -110,17 +121,19 @@ body {
     letter-spacing: -2px;
 }
 
-#content h3 {
-    font-size: 140%;
+#content.faq h3 {
+    font-size: 120%;
     font-weight: bold;
     color: #333;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
+    margin-top: 1em;
 }
 #content h4 {
     font-size: 120%;
     font-weight: normal;
     margin-bottom: .5em;
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #eee;
+    color: #333;
 }
 
 #content p {
@@ -196,6 +209,7 @@ table.calendar td {
     padding-top: 2em;
 }
 #stats dl {
+    line-height: 1.2em;
 }
 #stats dl dt {
     float: left;
@@ -224,11 +238,12 @@ table.calendar td {
 }
 
 blockquote.tweet {
-    width: 30em;
+    width: 32em; 
     margin: .5em 0;
     background: #eef;
+    border: 2px solid #ccf;
     padding: 1em;
-    font-family: Consolas, Monaco, monospace;
+    font-family: monaco,consolas,'courier new',courier,monospace;
     -moz-border-radius: 8px;
 }
 
