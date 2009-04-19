@@ -21,7 +21,7 @@ body {
     -moz-border-radius-bottomleft: 8px;
     -moz-border-radius-bottomright: 8px;
     -webkit-border-radius: 8px;
-    font-size: 90%;
+    font-size: 70%;
 }
 #header #report-form input[type=text] {
     border: 1px solid #999;
