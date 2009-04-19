@@ -1,12 +1,12 @@
 !!! Strict
 %html
   %head
-    / %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
     %title
       Twackit - 
       = yield(:page_title) || 'Whatever it is, track it with Twackit!'
       
-    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'reset', 'screen', :cache => true
     = stylesheet_link_tag 'screen'
     / = javascript_include_tag :defaults
 
