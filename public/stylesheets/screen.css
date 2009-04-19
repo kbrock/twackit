@@ -115,6 +115,7 @@ body {
 }
 
 #content h2 {
+    line-height: 42px;
     width: 60%;
     font-size: 250%;
     font-weight: normal;
@@ -122,6 +123,10 @@ body {
     color: #333;
     margin-bottom: .5em;
     letter-spacing: -2px;
+}
+#content h2 img {
+    vertical-align: middle;
+    padding-right: 8px;
 }
 
 #content.faq h3 {
@@ -135,6 +140,7 @@ body {
     font-size: 120%;
     font-weight: normal;
     margin-bottom: .5em;
+    padding-bottom: 4px;
     border-bottom: 2px solid #eee;
     color: #333;
 }

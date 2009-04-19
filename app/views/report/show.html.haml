@@ -1,7 +1,13 @@
 - title "#{@report.twitter_username} / #{@report.title}"
 
 %h2
-  == #{link_to(@report.twitter_username, "http://twitter.com/#{@report.twitter_username}")}'s
+  - twitter_profile_url = "http://twitter.com/#{@report.twitter_username}"
+
+  = succeed '&#8217;s' do
+    - if @report.picture_url.blank?
+      = link_to @report.full_name, twitter_profile_url
+    - else 
+      = link_to image_tag(@report.picture_url, :alt => @report.picture_description) + @report.full_name, twitter_profile_url
   = @report.title
   Report
 
