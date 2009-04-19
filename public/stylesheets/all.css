@@ -1,0 +1,305 @@
+/* 
+http://meyerweb.com/eric/tools/css/reset/ 
+v1.0 | 20080212
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body {
+    background: #eee;
+}
+
+#page {
+    font-family: 'Lucida Grande',verdana,arial,sans-serif;
+    width: 970px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+#header {
+    padding: 0 0 10px;
+}
+#header #report-form { 
+    float: right; 
+    color: #444; 
+    background-color: #ccc;
+    margin: 0;
+    padding: 1em;
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -webkit-border-radius: 8px;
+    font-size: 90%;
+}
+#header #report-form input[type=text] {
+    border: 1px solid #999;
+    background: #f8f8f8;
+    padding: 2px;
+    width: 12em;
+}
+#header #report-form input[type=submit] {
+}
+
+#header h1 {
+    padding-top: 14px;   
+}
+#header h1 a {
+    color: #333;
+    font-size: 40px;
+    font-family: 'cooper std',georgia,times,serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: italic;
+    letter-spacing: -1px;
+
+    /* hide the text and show logo image */
+    text-indent:-800em;
+    display: block;    
+    width: 155px;
+    height: 34px;
+    background: transparent url(/images/logo.png) no-repeat scroll 0 0;
+}
+#header p {
+    color: #666;
+    font-size: 70%;
+    margin-left: 4px;
+    margin-top: 2px;
+}
+
+#footer {
+    clear: both;
+    padding: 2em;
+    font-size: 80%;
+    color: #666;
+    background: #ccc;
+}
+#footer p {
+    text-align: center;
+}
+#footer a {
+    color: #333;
+    text-decoration: none;
+}
+#footer a:hover {
+    color: #333;
+    border-bottom: 1px dotted #333;
+}
+
+#content {
+    padding: 1.5em 1em;
+    font-size: 90%;
+    background: #fff;
+    border: 4px solid #ccc;
+    color: #333;
+
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-radius-topleft: 8px;
+    -webkit-border-radius-topright: 8px;
+}
+
+#content.home {
+    background-image: url(/images/screenshot.png);
+    background-repeat: no-repeat;
+    background-position: 640px 80px;
+}
+#content.home p {
+    width: 60%;
+}
+
+#content h2 {
+    width: 60%;
+    font-size: 250%;
+    font-weight: normal;
+    font-family: Georgia, Times, serif;
+    color: #333;
+    margin-bottom: .5em;
+    letter-spacing: -2px;
+}
+
+#content h3 {
+    font-size: 140%;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1em;
+}
+#content h4 {
+    font-size: 120%;
+    font-weight: normal;
+    margin-bottom: .5em;
+    border-bottom: 1px solid #000;
+}
+
+#content p {
+    margin-bottom: 1em;
+    line-height: 1.2em;
+}
+
+#content a {
+    color: #36c;
+    text-decoration: none;
+}
+#content a:hover {
+    color: #69f;
+}
+
+#chart {
+}
+
+#calendar {
+    clear: both;
+    
+}
+
+table.calendar {
+    float: left;
+    margin-right: 1em;
+    border-bottom: 1px solid #333;
+}
+table.calendar th.monthName {
+    padding: .25em 0;
+    font-weight: normal;
+}
+table.calendar tr.dayName th {
+    background-color: #333;
+    border: 1px solid #333;
+    color: #fff;
+    font-size: 80%;
+    padding: .5em 0 .25em;
+    text-transform: uppercase;
+}
+table.calendar td.otherMonth,
+table.calendar td.day {
+    padding: .25em;
+    width: 2.25em;
+    border: 1px solid #333;
+}
+table.calendar td.weekendDay {
+    background-color: #f8f8f8;
+}
+table.calendar td span {
+    text-align: right;
+    display: block;
+}
+table.calendar td ul.values {
+    color: #666;
+    font-size: 90%; 
+}
+
+table.calendar td.otherMonth {
+    color: #bbb;
+}
+table.calendar td.today {
+    background-color: #ff9;
+}
+
+table.calendar td {
+    text-align: right;
+}
+
+#stats {
+    clear: both;
+    width: 300px;
+    padding-top: 2em;
+}
+#stats dl {
+}
+#stats dl dt {
+    float: left;
+    width: 4em;
+    margin-right: 2em;
+    font-weight: bold;
+}
+
+#raw-data {
+    padding-top: 2em;
+    width: 300px;
+}
+
+#raw-data table tbody td,
+#raw-data table tbody th {
+    padding: .25em 1em 0 .5em;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+#raw-data table thead th {
+    background: #eee;
+    padding: .5em 1em .25em .5em;
+    text-align: left;
+    font-size: 80%;
+    text-transform: uppercase;
+}
+
+blockquote.tweet {
+    width: 30em;
+    margin: .5em 0;
+    background: #eef;
+    padding: 1em;
+    font-family: Consolas, Monaco, monospace;
+    -moz-border-radius: 8px;
+}
+
+.highlight {
+    background: #ff9;
+}
+
+.work-in-progress {
+    background: #ff9;
+    font-size: 100%;
+    text-align: center;
+    padding: .5em;
+    margin-bottom: 1em;
+    border: 3px solid #ff6;
+}
+
+.tabs { display: none; }
