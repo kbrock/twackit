@@ -54,7 +54,7 @@ class TwitterImporter
     distinct_users = tweets.map { |t| t.from_user }.uniq.size
     Import.create! :tweets => results.size, 
         :distinct_users => distinct_users,
-        :errors => errors, :duration => duration
+        :errs => errors, :duration => duration
     
     tweets
   end

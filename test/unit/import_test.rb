@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class ImportTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "create" do
+    Import.create! :tweets => 5, 
+        :distinct_users => 3,
+        :errs => 1, :duration => 10
+    
+    assert_equal 1, Import.count
   end
 end

@@ -3,7 +3,7 @@ class CreateImports < ActiveRecord::Migration
     create_table :imports do |t|
       t.integer :tweets
       t.integer :distinct_users
-      t.integer :errors
+      t.integer :errs
       t.integer :duration
 
       t.timestamps

@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20090420024636) do
   create_table "imports", :force => true do |t|
     t.integer  "tweets"
     t.integer  "distinct_users"
-    t.integer  "errors"
+    t.integer  "errs"
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
