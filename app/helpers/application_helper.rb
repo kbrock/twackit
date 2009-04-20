@@ -7,4 +7,19 @@ module ApplicationHelper
   def url_for_status(tweet)
     "http://twitter.com/#{tweet.from_user}/status/#{tweet.status_id}"
   end
+  
+  def smart_timestamp(time)
+    if time > 2.days.ago
+      time_ago_in_words(time) + ' ago'
+    else
+      time.to_s(:long)
+    end
+  end
+  
+  def javascript(*files)
+    @javascripts ||= []
+    @javascripts += files.map do |f|
+      f.to_s =~ /http/ ? f : "/javascripts/#{f.to_s}.js"
+    end
+  end
 end

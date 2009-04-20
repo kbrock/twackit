@@ -1,15 +1,18 @@
 function initViz() {
-  var query = new google.visualization.Query(vizQueryUrl);
-  query.send(handleQueryResponse);
-}
+  var data = new google.visualization.DataTable(vizData);
+  debugger;
 
-function handleQueryResponse(response) {
-  if (response.isError()) {
-    alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-    return;
-  }
-
-  var data = response.getDataTable();
-  var chart = new google.visualization.PieChart(document.getElementById('chart_container'));
-  chart.draw(data, {width: 400, height: 240, is3D: true});
+  var lineChart = new google.visualization.LineChart(document.getElementById('line_chart'));
+  lineChart.draw(data, {
+    width: 800,
+    height: 450,
+    title: 'Chart'
+  });
+  
+  // var dataTable = new google.visualization.Table(document.getElementById('data_table'));
+  // dataTable.draw(data, {
+  //   width: 800,
+  //   height: 450,
+  //   title: 'Data'
+  // });
 }

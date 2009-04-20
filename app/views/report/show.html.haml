@@ -1,3 +1,4 @@
+- javascript 'http://www.google.com/jsapi', :visualization
 - title "#{@report.twitter_username} / #{@report.title}"
 
 %h2
@@ -12,9 +13,9 @@
   Report
 
 - if @report.tweets.any?
-  %p{ :style => 'float: right;' }
+  %p.updated
     Updated
-    %strong= @report.tweets.last.status_at.to_s(:long)
+    %span.when= smart_timestamp(@report.tweets.last.status_at)
 
   %ul.tabs
     %li 
@@ -25,8 +26,7 @@
 
   #chart
     %h4 Chart
-    %p
-      = chart(@report)
+    #line_chart
 
 
   #calendar
@@ -63,19 +63,14 @@
           %tr
             %th= tweet.data
             %td= tweet.status_at.to_s(:short)
-    
+    #data_table
 
 - else
   %p 
     %strong No tweets found yet.
     Twackit searches for new tweets every hour.
 
-
-#chart_container
-
-%script{ :type => 'text/javascript', :src => 'http://www.google.com/jsapi' }
-%script{ :type => 'text/javascript', :src => '/javascripts/visualization.js' }
 :javascript
-  var vizData = #{@report.visualization_data.to_json}
+  vizData = #{@report.visualization_data.to_json};  
   google.load('visualization', '1', {'packages':['table', 'linechart']});
   google.setOnLoadCallback(initViz);

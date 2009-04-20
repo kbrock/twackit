@@ -2,6 +2,7 @@
 var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
 document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
 </script>
+
 <script type="text/javascript">
 UserVoice.Tab.show({ 
   key: 'twackit',
@@ -12,13 +13,14 @@ UserVoice.Tab.show({
   text_color: 'white', /* 'white', 'black' */
   hover_color: '#09f',
   lang: 'en' /* 'en', 'de', 'nl', 'es', 'fr' */
-})
+});
 </script>
+
 <script type="text/javascript">
 UserVoice.Popin.setup({ 
-key: 'twackit',
-host: 'twackit.uservoice.com', 
-forum: 'general', 
-lang: 'en' /* 'en', 'de', 'nl', 'es', 'fr' */
-})
+  key: 'twackit',
+  host: 'twackit.uservoice.com', 
+  forum: 'general', 
+  lang: 'en' /* 'en', 'de', 'nl', 'es', 'fr' */
+});
 </script>

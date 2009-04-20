@@ -21,7 +21,7 @@ class Tweet < ActiveRecord::Base
   def self.build_for_status(status)
     new(:status_id => status.id,
         :status_at => status.created_at,
-        :from_user => v.from_user,
+        :from_user => status.from_user,
         :status => status.text,
         :language => status.iso_language_code)
   end

@@ -7,8 +7,10 @@
       = yield(:page_title) || 'Whatever it is, track it with Twackit!'
       
     = stylesheet_link_tag 'reset', 'screen', :cache => true
-    =# javascript_include_tag :defaults
-
+    - unless @javascripts.blank?
+      - for javascript in @javascripts
+        %script{ :type => 'text/javascript', :src => javascript }
+    
   %body  
     #page
       #header

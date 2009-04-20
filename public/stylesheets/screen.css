@@ -183,6 +183,10 @@ table.calendar tr.dayName th {
     padding: .5em 0 .25em;
     text-transform: uppercase;
 }
+table.calendar td {
+    height: 3em;    
+    text-align: right;
+}
 table.calendar td.otherMonth,
 table.calendar td.day {
     padding: .25em;
@@ -192,25 +196,24 @@ table.calendar td.day {
 table.calendar td.weekendDay {
     background-color: #f8f8f8;
 }
-table.calendar td span {
-    text-align: right;
+table.calendar td.day span, 
+table.calendar td.otherMonth {
+    font-size: 70%;
+}
+table.calendar td.day span {
     display: block;
 }
 table.calendar td ul.values {
     color: #666;
     font-size: 90%; 
 }
-
 table.calendar td.otherMonth {
     color: #bbb;
 }
 table.calendar td.today {
-    background-color: #ff9;
+    background-color: #ccc;
 }
 
-table.calendar td {
-    text-align: right;
-}
 
 #stats {
     clear: both;
@@ -266,9 +269,16 @@ blockquote.tweet {
     font-size: 100%;
     text-align: center;
     padding: .5em;
-    width: 40em;
     margin: -.5em auto 1em auto;
     border: 3px solid #ff6;    
+}
+
+.report .updated {
+    font-size: 70%;
+    float: right;
+}
+.report .updated .when {
+    font-weight: bold;
 }
 
 .tabs { display: none; }

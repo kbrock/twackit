@@ -26,15 +26,15 @@ class Report
   def visualization_data
     rows = []
     cols = [
-        { :id => 'timestamp', label => 'Date/time', type => 'datetime' },
         { :id => 'value', :label => 'Value', :type => 'number' },
+        { :id => 'timestamp', :label => 'Date/time', :type => 'string' },
         { :id => 'note', :label => 'Note', :type => 'string' }
         ]
     
     tweets.each do |tweet|
       row = [
-          { :v => tweet.status_at },
           { :v => tweet.data },
+          { :v => tweet.status_at },
           { :v => tweet.note },
           ]
       rows << { :c => row }
