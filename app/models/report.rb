@@ -21,6 +21,28 @@ class Report
     end    
   end  
   
+  # Returns data in a structure consumable by a Google Visualization 
+  # DataTable. The format is described at http://code.google.com/apis/visualization/documentation/reference.html#DataTable
+  def visualization_data
+    rows = []
+    cols = [
+        { :id => 'timestamp', label => 'Date/time', type => 'datetime' },
+        { :id => 'value', :label => 'Value', :type => 'number' },
+        { :id => 'note', :label => 'Note', :type => 'string' }
+        ]
+    
+    tweets.each do |tweet|
+      row = [
+          { :v => tweet.status_at },
+          { :v => tweet.data },
+          { :v => tweet.note },
+          ]
+      rows << { :c => row }
+    end
+    
+    return { :cols => cols, :rows => rows }
+  end
+  
   def picture_description
     "#{twitter_username}'s Twitter profile picture"
   end

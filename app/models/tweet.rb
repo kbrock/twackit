@@ -1,6 +1,9 @@
 class Tweet < ActiveRecord::Base
   HASHTAGS_RE = /\#\S*/
 
+  # TODO Switch to has_many :through so we have canonical, reusable hashtags? 
+  # This would save storage space and  make it easier to compare data between 
+  # users with same hashtag.
   has_many :hashtags, :dependent => :destroy
 
   validates_presence_of :status_id, :status_at, :from_user, :status, :data
@@ -14,6 +17,14 @@ class Tweet < ActiveRecord::Base
       { :joins => :hashtags, :conditions => ["from_user=? and hashtags.value=?", twitter_user, hashtag] }
     }
   
+  
+  def self.build_for_status(status)
+    new(:status_id => status.id,
+        :status_at => status.created_at,
+        :from_user => v.from_user,
+        :status => status.text,
+        :language => status.iso_language_code)
+  end
   
   # Find the latest (most recent) Twitter status ID that we've fetched.
   def self.latest_id

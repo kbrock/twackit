@@ -32,12 +32,7 @@ class TwitterImporter
     tweets = Array.new(results.size)
     errors = 0
     results.each_with_index do |r, i|
-      tweet = Tweet.new(
-          :status_id => r.id,
-          :status_at => r.created_at,
-          :from_user => r.from_user,
-          :status => r.text,
-          :language => r.iso_language_code)
+      tweet = Tweet.build_for_status(r)
 
       # Don't fail too noisily... we want to continue processing!
       if tweet.save
