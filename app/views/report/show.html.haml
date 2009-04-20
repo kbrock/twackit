@@ -69,4 +69,10 @@
   %p 
     %strong No tweets found yet.
     Twackit searches for new tweets every hour.
-    
+
+%script{ :type => 'text/javascript', :src => 'http://www.google.com/jsapi' }
+%script{ :type => 'text/javascript', :src => '/javascripts/visualization.js' }
+:javascript
+  var vizData = #{@report.tweets.to_json}
+  google.load('visualization', '1', {'packages':['table', 'linechart']});
+  google.setOnLoadCallback(initViz);
