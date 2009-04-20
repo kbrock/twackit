@@ -2,6 +2,7 @@
 class TwitterImporter
 
   def self.import!(per_page=100)
+    t0 = Time.now
     results = []
     since_id = Tweet.latest_id
 
@@ -29,6 +30,7 @@ class TwitterImporter
 
     # log new tweets to database
     tweets = Array.new(results.size)
+    errors = 0
     results.each_with_index do |r, i|
       tweet = Tweet.new(
           :status_id => r.id,
@@ -38,13 +40,21 @@ class TwitterImporter
           :language => r.iso_language_code)
 
       # Don't fail too noisily... we want to continue processing!
-      if tweet.save!
+      if tweet.save
         tweets[i] = tweet
       else
         # TODO send error to hoptoad/exceptional?
         Rails.logger.error "Failed to save tweet: #{tweet.errors.full_messages.join('.')}"
+        errors += 1
       end
     end
+    
+    # log some stats about this import
+    duration = Time.now - t0
+    distinct_users = tweets.map { |t| t.from_user }.uniq.size
+    Import.create! :tweets => results.size, 
+        :distinct_users => distinct_users,
+        :errors => errors, :duration => duration
     
     tweets
   end

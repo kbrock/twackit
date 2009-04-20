@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tweets: 1
+  distince_users: 1
+  errors: 1
+  duration: 1
+
+two:
+  tweets: 1
+  distince_users: 1
+  errors: 1
+  duration: 1

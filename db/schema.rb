@@ -9,7 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090125022348) do
+ActiveRecord::Schema.define(:version => 20090420024636) do
+
+  create_table "hashtags", :force => true do |t|
+    t.integer "tweet_id", :null => false
+    t.text    "value",    :null => false
+  end
+
+  add_index "hashtags", ["tweet_id"], :name => "index_hashtags_on_tweet_id"
+
+  create_table "imports", :force => true do |t|
+    t.integer  "tweets"
+    t.integer  "distinct_users"
+    t.integer  "errors"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -20,5 +36,21 @@ ActiveRecord::Schema.define(:version => 20090125022348) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "tweets", :force => true do |t|
+    t.integer  "status_id",                     :null => false
+    t.datetime "status_at",                     :null => false
+    t.text     "from_user",                     :null => false
+    t.text     "status",                        :null => false
+    t.text     "language"
+    t.boolean  "processed",  :default => false, :null => false
+    t.text     "data",                          :null => false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tweets", ["processed"], :name => "index_tweets_on_processed"
+  add_index "tweets", ["status_id"], :name => "index_tweets_on_status_id", :unique => true
 
 end
