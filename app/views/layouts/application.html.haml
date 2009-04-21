@@ -5,7 +5,9 @@
     %title
       Twackit - 
       = yield(:page_title) || 'Whatever it is, track it with Twackit!'
-      
+
+    %meta{ :name => 'description', :content => 'Use your Twitter account to track any metric and observe trends over time. Twackit will find your tweets and generate simple reports.' }
+    
     = stylesheet_link_tag 'reset', 'screen', 'lightbox', :cache => true
     = javascript_include_tag :all, :cache => true
 
@@ -20,10 +22,12 @@
     
   %body  
     #message.work-in-progress
-      %span= link_to_function '&times;', "document.getElementById('message').style.display = 'none';"
+      %span
+        %a.close{ :href => '#', :onclick => "document.getElementById('message').style.display = 'none';" } &times; 
       %p
         Twackit is still a work in progress, so any
-        %strong= link_to_function 'feedback', "UserVoice.Popin.show()"
+        %strong
+          %a.feedback{ :href => '#', :onclick => "UserVoice.Popin.show()" } feedback
         would be awesome!
 
     #page
@@ -50,7 +54,8 @@
         %p
           Copyright &copy; 2009, 
           == #{link_to 'Jeremy Weiskotten', 'http://twitter.com/twackit'}.
-          %strong= link_to_function 'Feedback', "UserVoice.Popin.show()"
+          %strong
+            %a.feedback{ :href => '#', :onclick => "UserVoice.Popin.show()" } Feedback
           |
           = link_to 'FAQ', faq_path
 
