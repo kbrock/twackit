@@ -23,7 +23,7 @@
   %body  
     #message.work-in-progress
       %span
-        %a.close{ :href => '#', :onclick => "document.getElementById('message').style.display = 'none';" } &times; 
+        %a.close{ :href => '#', :onclick => "$('message').hide()" } &times; 
       %p
         Twackit is still a work in progress, so any
         %strong
