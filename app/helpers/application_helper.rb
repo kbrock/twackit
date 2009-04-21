@@ -4,6 +4,10 @@ module ApplicationHelper
     content_for :page_title, t
   end
   
+  def feedback_page
+    { :href => 'http://twackit.uservoice.com', :onclick => "UserVoice.Popin.show(); return false;" }
+  end
+  
   def url_for_status(tweet)
     "http://twitter.com/#{tweet.from_user}/status/#{tweet.status_id}"
   end
