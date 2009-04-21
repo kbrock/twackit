@@ -1,6 +1,7 @@
 body {
-    background: #eee url(/images/body-bg.png) repeat-x;
+    background: #eee;
     font-family: 'Lucida Grande',verdana,arial,sans-serif;
+    border-top: 6px solid #ccc;
 }
 
 #page {
@@ -15,6 +16,7 @@ body {
     text-align: center;
     padding: .6em;
     border-bottom: 3px solid #ee6;
+    margin-top: -6px;
 }
 .work-in-progress span a {
     float: right;
@@ -94,7 +96,7 @@ a.screenshot {
     height: 34px;
     background: transparent url(/images/logo.png) no-repeat scroll 0 0;
 }
-#header p {
+#header p.tagline {
     color: #666;
     font-size: 70%;
     margin-left: 4px;
@@ -290,7 +292,7 @@ table.calendar td.today {
     text-transform: uppercase;
 }
 
-blockquote.tweet {
+#content blockquote.tweet {
     width: 32em; 
     margin: .5em 0;
     background: #eef;
@@ -299,6 +301,10 @@ blockquote.tweet {
     font-family: monaco,consolas,'courier new',courier,monospace;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
+}
+#content blockquote.tweet p {
+    margin: 0 !important;
+    width: 100% !important;
 }
 
 .highlight {

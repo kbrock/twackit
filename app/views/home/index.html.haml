@@ -24,8 +24,10 @@
 %p
   Here are some examples to help you get started&hellip;
 
-%blockquote.tweet @twackit 165 #weight
-%blockquote.tweet @twackit 37 #mpg a lot of highway driving this week!
+= partial 'tweet' do
+  @twackit 165 #weight
+= partial 'tweet' do
+  @twackit 37 #mpg a lot of highway driving this week!
 
 %br
 %p
@@ -33,8 +35,10 @@
   %strong drill down 
   in different ways.
 
-%blockquote.tweet @twackit 1.50 #expenses #tolls
-%blockquote.tweet @twackit 7.35 #expenses #lunch Mel's Diner
+= partial 'tweet' do
+  @twackit 1.50 #expenses #tolls
+= partial 'tweet' do
+  @twackit 7.35 #expenses #lunch Mel's Diner
 
 %br
 %p
@@ -42,5 +46,3 @@
   Check out the
   = link_to 'FAQ', faq_path, :title => 'Frequently Asked Questions'
   for more information.
-
-  

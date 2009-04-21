@@ -1,13 +1,15 @@
 !!! Strict
-%html
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en', :lang => 'en' }
   %head
-    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
+    
+    %meta{ 'name' => 'description', 'content' => 'Use your Twitter account to track any metric and observe trends over time. Twackit will find your tweets and generate simple reports.' }
+    %meta{ 'http-equiv' => 'Content-Type', 'content' => 'text/html;charset=utf-8' }  
+    
     %title
       Twackit - 
       = yield(:page_title) || 'Whatever it is, track it with Twackit!'
 
-    %meta{ :name => 'description', :content => 'Use your Twitter account to track any metric and observe trends over time. Twackit will find your tweets and generate simple reports.' }
-    
+    %link{ :rel => 'shortcut icon', :href => '/favicon.ico', :type => 'image/x-icon' }
     = stylesheet_link_tag 'reset', 'screen', 'lightbox', :cache => true
     = javascript_include_tag :all, :cache => true
 
@@ -35,22 +37,23 @@
 
         #report-form
           - form_tag root_path do
-            http://twackit.com/
-            = text_field_tag :twitter_username, @twitter_username || 'your Twitter username', :onfocus => 'this.select();'
-            = '/'
-            = text_field_tag :hashtag, @hashtag || 'your twacking hashtag', :onfocus => 'this.select();'
-            = submit_tag 'Report'
+            %p
+              http://twackit.com/
+              = text_field_tag :twitter_username, @twitter_username || 'your Twitter username', :onfocus => 'this.select();'
+              = '/'
+              = text_field_tag :hashtag, @hashtag || 'your twacking hashtag', :onfocus => 'this.select();'
+              = submit_tag 'Report'
 
   
         %h1= link_to 'Twackit', root_path
-        %p Whatever it is, track it with Twackit!
+        %p.tagline Whatever it is, track it with Twackit!
     
       #content{ :class => [controller.controller_name, controller.action_name].join(' ') }          
         = yield
 
       #footer
         %p
-          = render :partial => 'layouts/pledgie'
+          = partial 'layouts/pledgie'
         %p
           Copyright &copy; 2009, 
           == #{link_to 'Jeremy Weiskotten', 'http://twitter.com/twackit'}.
@@ -59,5 +62,5 @@
           |
           = link_to 'FAQ', faq_path
 
-    = render :partial => 'layouts/uservoice'
-    = render :partial => 'layouts/google_analytics'
+    = partial 'layouts/uservoice'
+    = partial 'layouts/google_analytics'
