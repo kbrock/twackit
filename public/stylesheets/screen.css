@@ -1,12 +1,35 @@
 body {
-    background: #eee;
+    background: #eee url(/images/body-bg.png) repeat-x;
+    font-family: 'Lucida Grande',verdana,arial,sans-serif;
 }
 
 #page {
-    font-family: 'Lucida Grande',verdana,arial,sans-serif;
     width: 970px;
     margin: 0 auto;
     position: relative;
+}
+
+.work-in-progress {
+    background: #ff9 url(/images/stripe-yellow.png);
+    font-size: 90%;
+    text-align: center;
+    padding: .6em;
+    border-bottom: 3px solid #ee6;
+}
+.work-in-progress span a {
+    float: right;
+    color: #000;
+    font-weight: bold;
+}
+
+a.screenshot {
+    width: 265px; 
+    height: 301px;
+    position: absolute;
+    left: 640px;
+    top: 100px;
+    background-image: url(/images/screenshot_thumbnail.png);
+    background-repeat: no-repeat;
 }
 
 #header {
@@ -15,27 +38,33 @@ body {
 #header #report-form { 
     float: right; 
     color: #444; 
-    font-size: 70%;
-    background-color: #ccc;
+    font-size: 90%;
+    background: #ccc url(/images/stripe.png);
     margin: 0;
     padding: 1em;
 
     -moz-border-radius-bottomleft: 8px;
     -moz-border-radius-bottomright: 8px;
-    -webkit-border-radius-bottomleft: 8px;
-    -webkit-border-radius-bottomright: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
 }
 #header #report-form input[type=text] {
-    border: 1px solid #999;
+    border: 1px solid;
+    border-color: #666 #aaa #aaa #666;
     background: #f8f8f8;
     padding: 2px;
     width: 12em;
+    font-weight: bold;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-size: 100%;
 }
 #header #report-form input[type=submit] {
     color: #eef;
-    font-weight: bold;
     background: #36c url(/images/gradient-button.png) repeat-x;
     border: 1px solid #36c;
+    font-size: 90%;
+    padding: 1px 8px;
 
     -moz-border-radius: .5em;
     -webkit-border-radius: .5em;
@@ -101,23 +130,36 @@ body {
 
     -moz-border-radius-topleft: 8px;
     -moz-border-radius-topright: 8px;
-    -webkit-border-radius-topleft: 8px;
-    -webkit-border-radius-topright: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
 }
 
 #content.home.index {
-    background-image: url(/images/screenshot.png);
-    background-repeat: no-repeat;
-    background-position: 640px 80px;
 }
 #content.home p {
     width: 60%;
 }
 
+#content.home.index p.caption {
+    float: right;
+    font-size: 80%;
+    width: 260px;
+    margin-top: 240px;
+    margin-right: 45px;
+    font-family: Arial, sans-serif;
+    text-align: right;
+}
+#content.home.index p.caption abbr {
+    font-style: italic;
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+
 #content h2 {
-    line-height: 42px;
+    font-size: 220%;
+    line-height: .9em;
     width: 60%;
-    font-size: 250%;
     font-weight: normal;
     font-family: Georgia, Times, serif;
     color: #333;
@@ -147,23 +189,23 @@ body {
 
 #content p {
     margin-bottom: 1em;
-    line-height: 1.2em;
+    line-height: 1.4em;
 }
 
-#content a {
+a {
     color: #36c;
     text-decoration: none;
 }
-#content a:hover {
+a:hover {
     color: #69f;
 }
 
-#chart {
+#timeline {
+    height: 220px;
 }
 
 #calendar {
-    clear: both;
-    
+    padding-top: 2em;    
 }
 
 table.calendar {
@@ -179,8 +221,8 @@ table.calendar tr.dayName th {
     background-color: #333;
     border: 1px solid #333;
     color: #fff;
-    font-size: 80%;
-    padding: .5em 0 .25em;
+    font-size: 70%;
+    padding: .5em 0;
     text-transform: uppercase;
 }
 table.calendar td {
@@ -232,7 +274,6 @@ table.calendar td.today {
 
 #raw-data {
     padding-top: 2em;
-    width: 300px;
 }
 
 #raw-data table tbody td,
@@ -262,15 +303,7 @@ blockquote.tweet {
 
 .highlight {
     background: #ff9;
-}
-
-.work-in-progress {
-    background: #ff9;
-    font-size: 100%;
-    text-align: center;
-    padding: .5em;
-    margin: -.5em auto 1em auto;
-    border: 3px solid #ff6;    
+/*    border-bottom: 2px solid #ff6;*/
 }
 
 .report .updated {
@@ -282,3 +315,7 @@ blockquote.tweet {
 }
 
 .tabs { display: none; }
+
+.annotatedtimelinetable, .annotatedtimelinetable * {
+    vertical-align: top;
+}

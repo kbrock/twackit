@@ -25,8 +25,9 @@
       %a Stats
 
   #chart
-    %h4 Chart
-    #line_chart
+    %h4 Timeline
+    #timeline
+      %p Loading...
 
 
   #calendar
@@ -52,18 +53,9 @@
       %dd== #{@report.stats[:amount_change]} (#{number_to_percentage(@report.stats[:percent_change], :precision => 2)})
 
   #raw-data  
-    %h4 Raw Data
-    %table.raw-data
-      / %thead
-      /   %tr
-      /     %th Value
-      /     %th Created
-      %tbody
-        - for tweet in @report.tweets
-          %tr
-            %th= tweet.data
-            %td= tweet.status_at.to_s(:short)
+    %h4 Data Points
     #data_table
+      %p Loading...
 
 - else
   %p 
@@ -72,5 +64,5 @@
 
 :javascript
   vizData = #{@report.visualization_data.to_json};  
-  google.load('visualization', '1', {'packages':['table', 'linechart']});
+  google.load('visualization', '1', {'packages':['annotatedtimeline', 'table']});
   google.setOnLoadCallback(initViz);

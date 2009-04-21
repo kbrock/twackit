@@ -1,18 +1,19 @@
 function initViz() {
   var data = new google.visualization.DataTable(vizData);
-  debugger;
-
-  var lineChart = new google.visualization.LineChart(document.getElementById('line_chart'));
-  lineChart.draw(data, {
-    width: 800,
-    height: 450,
-    title: 'Chart'
-  });
   
-  // var dataTable = new google.visualization.Table(document.getElementById('data_table'));
-  // dataTable.draw(data, {
-  //   width: 800,
-  //   height: 450,
-  //   title: 'Data'
+  var timeline = new google.visualization.AnnotatedTimeLine(document.getElementById('timeline'));
+  var table = new google.visualization.Table(document.getElementById('data_table'));
+
+  // google.visualization.events.addListener(timeline, 'ready', function(event) {
+  //   alert('annotatedtimeline is ready, master!');
   // });
+
+  timeline.draw(data, {
+    displayAnnotations: true, 
+    annotationsWidth: 30,
+    displayZoomButtons: true,
+    displayRangeSelector: true,
+    });  
+  table.draw(data, null);
+  
 }

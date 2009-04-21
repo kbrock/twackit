@@ -1,4 +1,6 @@
 class Report
+  extend ActiveSupport::Memoizable
+  
   attr_reader :tweets, :twitter_username, :hashtag, :title, :values, 
       :full_name, :picture_url  
   
@@ -11,36 +13,48 @@ class Report
     @values = self.tweets.map { |t| t.value }
 
     # TODO Using this to fetch things from the API like photo URL and full name. Cache this stuff?
-    twitter_user = Twitter.user(@twitter_username)
+    twitter_user = Twitter.user(@twitter_username) rescue nil
     if twitter_user
       @full_name = twitter_user.name
       @picture_url = twitter_user.profile_image_url
     else
       @full_name = @twitter_username
       @picture_url = nil
-    end    
+    end
   end  
   
   # Returns data in a structure consumable by a Google Visualization 
   # DataTable. The format is described at http://code.google.com/apis/visualization/documentation/reference.html#DataTable
   def visualization_data
-    rows = []
     cols = [
-        { :id => 'value', :label => 'Value', :type => 'number' },
-        { :id => 'timestamp', :label => 'Date/time', :type => 'string' },
+        { :id => 'date', :label => 'Date', :type => 'date' },
+        { :id => 'value', :label => hashtag.titleize, :type => 'number' },
         { :id => 'note', :label => 'Note', :type => 'string' }
         ]
     
-    tweets.each do |tweet|
-      row = [
-          { :v => tweet.data },
-          { :v => tweet.status_at },
-          { :v => tweet.note },
+    rows = tweets.map do |tweet|
+      { 
+        :c => [
+          { :v => tweet.status_at.to_date }, #, :f => tweet.status_at.to_s(:long_us) },
+          { :v => tweet.data.to_f },
+          { :v => tweet.note }
           ]
-      rows << { :c => row }
+      }
     end
+     
+    { :cols => cols, :rows => rows }
+
+    # tweets.map do |tweet|
+    #   { 
+    #     :date_year => tweet.status_at.year,
+    #     :date_month => tweet.status_at.month,
+    #     :date_day => tweet.status_at.day,
+    #     :formatted_date => tweet.status_at.to_s(:long_us),
+    #     :val => tweet.data.to_i,
+    #     :note => tweet.note
+    #   }
+    # end
     
-    return { :cols => cols, :rows => rows }
   end
   
   def picture_description
@@ -48,21 +62,17 @@ class Report
   end
   
   def tweets_by_date
-    @tweets_by_date ||= @tweets.group_by { |t| t.status_at.to_date }
+    @tweets.group_by { |t| t.status_at.to_date }
   end
+  memoize :tweets_by_date
   
   def stats
-    return @stats if @stats
-    
-    if self.values.blank?
-      @stats = {}
-      return @stats
-    end
+    return {} if self.values.blank?
     
     latest_value = self.values.last
     first_value = self.values.first
     
-    @stats = {
+    {
       :amount_change => latest_value - first_value,
       :percent_change => (latest_value - first_value)*100/first_value,
       :min => self.values.min,
@@ -70,4 +80,6 @@ class Report
       :avg => self.values.sum/self.values.size
     }
   end
+  memoize :stats
+
 end

@@ -1,6 +1,15 @@
+- lightbox
+
 %h2
   Use your Twitter account to track any metric &amp; observe trends over time.
-    
+
+%a.screenshot{ :href => "/images/screenshot.png", :rel => "lightbox" }
+  
+%p.caption
+  Once you've started twacking, see your report at
+  = succeed '.' do
+    %strong.highlight http://twackit.com/<abbr title="Your Twitter username">username</abbr>/<abbr title="A hashtag you twacked with, such as 'weight'">hashtag</abbr>
+      
 %p  
   %strong
     Just tweet a value and hashtag to 
@@ -31,7 +40,9 @@
 
 %br
 %p
-  %strong Want to know more about Twackit?
+  %strong Want to know more?
   Check out the
-  = link_to 'FAQ', faq_path
+  = link_to 'FAQ', faq_path, :title => 'Frequently Asked Questions'
   for more information.
+
+  
