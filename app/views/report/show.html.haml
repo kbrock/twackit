@@ -32,10 +32,8 @@
 
   #calendar
     %h4 Calendar
-    - date = 2.months.ago.to_date
-    - 3.times do
-      = tweet_calendar(date)
-      - date >>= 1
+    - 2.downto(0) do |months_ago|
+      = tweet_calendar(Date.today << months_ago)
 
   #stats
     %h4 Stats
@@ -50,7 +48,9 @@
       %dd= @report.stats[:avg]
 
       %dt Change
-      %dd== #{@report.stats[:amount_change]} (#{number_to_percentage(@report.stats[:percent_change], :precision => 2)})
+      %dd
+        = @report.stats[:amount_change]        
+        == (#{number_to_percentage(@report.stats[:percent_change], :precision => 2)})
 
   #raw-data  
     %h4 Data Points
