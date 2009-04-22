@@ -21,7 +21,6 @@ Rails::Initializer.run do |config|
   # note: need to add gems to .gems for heroku
   config.gem "jnunemaker-twitter", :lib => 'twitter', :version => '0.6.6', :source => "http://gems.github.com"
   config.gem 'haml', :version => '2.0.9'
-  config.gem 'gchartrb', :lib => 'google_chart'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   
   # Only load the plugins named here, in the order given. By default, all plugins 

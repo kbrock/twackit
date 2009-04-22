@@ -4,5 +4,4 @@ oauth
 mash
 jnunemaker-twitter --source http://gems.github.com
 haml --version 2.0.9
-gchartrb
 mislav-will_paginate --source http://gems.github.com
