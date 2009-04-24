@@ -170,17 +170,16 @@ a.screenshot {
     border-style: solid;
     border-color: #ccc;
 }
-#content.home.index dl.quote dt {
+#content.home dl.quote dt {
     font-family: georgia,times,serif;
     font-size: 140%;
     color: #666;
 }
-#content.home.index dl.quote dd {
-    font-family: georgia,times,serif;
+#content.home dl.quote dd {
     margin-right: 8px;
     margin-top: 4px;
 }
-#content.home.index dl.quote dd.source {
+#content.home dl.quote dd.source {
     font-weight: bold;
     font-size: 110%;
     margin-top: 12px;
