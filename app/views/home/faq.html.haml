@@ -2,6 +2,9 @@
 
 %h2= yield(:page_title)
 
+#sidebar
+  = partial 'quote'
+
 %h3 What is it you do here?
 %p
   We look for special Twitter statuses, or tweets, that are some kind of 
@@ -20,8 +23,22 @@
   %strong @twackit 
   with a value and at least one hashtag. You can include a note to give your 
   twack some additional human-friendly context if you&#8217;d like.
+%p 
+  For example, if you&#8217;d like to twack your weight and today you weighed
+  in at a svelte 135 pounds (or kilograms, if you play for that team):
+
 %blockquote.tweet
-  @twackit 185 #weight packed some on over the holidays
+  @twackit 135 #weight this diet seems to be working
+  
+%h3 How do I view my reports and graphs?
+%p
+  After you&#8217;ve sent a tweet to @twackit, come back
+  to Twackit and enter your Twitter username and one of your hashtags in the
+  form at the top of the page and click the shiny blue &#147;Report&#148; button.
+%p
+  Note that Twackit pulls in new twacks only about once an hour, so your latest
+  data may not show up right away. Bookmark your report page so you&#8217;ll 
+  remember to check back later.
 
 %h3 Is my information safe?
 %p
@@ -33,9 +50,15 @@
 %p
   That&#8217;s technically not a 
   %em question,
-  but find the blue feedback button to get to our 
+  but poke the blue feedback button to get to our 
   == #{link_to_function 'UserVoice forum', "UserVoice.Popin.show()"}
-  and let us know what&#8217;s on your mind.
+  and let us know what&#8217;s on your mind. We think that people will find 
+  lots of interesting, creative ways to use Twackit, so we really want to 
+  hear from you.
+
+%h3 Why does the word &#147;twackit&#148; make me feel dirty?
+%p
+  Because you&#8217;re a godless heathen.
 
 %h3 I don&#8217;t have a Twitter account. Can I still, um, twack it?
 %p

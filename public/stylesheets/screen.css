@@ -136,20 +136,23 @@ a.screenshot {
     -webkit-border-top-right-radius: 8px;
 }
 
-#content.home.index {
-}
 #content.home p {
     width: 60%;
 }
 
-#content.home.index p.caption {
+#content.home #sidebar {
     float: right;
+    margin-right: 20px;
+}
+
+#content.home.index p.caption {
+    margin-top: 240px;
+    margin-right: 40px;    
     font-size: 80%;
     width: 260px;
-    margin-top: 240px;
-    margin-right: 45px;
     font-family: Arial, sans-serif;
     text-align: right;
+    float: right;
 }
 #content.home.index p.caption abbr {
     font-style: italic;
@@ -157,6 +160,31 @@ a.screenshot {
     cursor: help;
 }
 
+#content.home dl.quote {
+    margin-top: 350px;
+    margin-right: 0px;
+    width: 100%;
+    text-align: right;
+    padding: 1em 0;
+    border-width: 4px 0;
+    border-style: solid;
+    border-color: #ccc;
+}
+#content.home.index dl.quote dt {
+    font-family: georgia,times,serif;
+    font-size: 140%;
+    color: #666;
+}
+#content.home.index dl.quote dd {
+    font-family: georgia,times,serif;
+    margin-right: 8px;
+    margin-top: 4px;
+}
+#content.home.index dl.quote dd.source {
+    font-weight: bold;
+    font-size: 110%;
+    margin-top: 12px;
+}
 
 #content h2 {
     font-size: 220%;
