@@ -57,8 +57,8 @@ class Report
   def stats
     return {} if self.values.blank?
     
-    latest_value = self.values.last
-    first_value = self.values.first
+    latest_value = values.first
+    first_value = values.last
     
     {
       :amount_change => latest_value - first_value,

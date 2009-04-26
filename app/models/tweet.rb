@@ -17,7 +17,11 @@ class Tweet < ActiveRecord::Base
   
   
   named_scope :for_report, lambda { |twitter_user, hashtag|
-      { :joins => :hashtags, :conditions => ["from_user=? and hashtags.value=?", twitter_user, hashtag] }
+      { 
+        :joins => :hashtags, 
+        :conditions => ["from_user=? and hashtags.value=?", twitter_user, hashtag],
+        :order => 'status_at desc' 
+      }
     }
 
 
