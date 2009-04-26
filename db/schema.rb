@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090420024636) do
+ActiveRecord::Schema.define(:version => 20090426160702) do
 
   create_table "hashtags", :force => true do |t|
     t.integer "tweet_id", :null => false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20090420024636) do
     t.integer  "tweets"
     t.integer  "distinct_users"
     t.integer  "errs"
-    t.integer  "duration"
+    t.float    "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -43,18 +43,6 @@ class Report
     end
      
     { :cols => cols, :rows => rows }
-
-    # tweets.map do |tweet|
-    #   { 
-    #     :date_year => tweet.status_at.year,
-    #     :date_month => tweet.status_at.month,
-    #     :date_day => tweet.status_at.day,
-    #     :formatted_date => tweet.status_at.to_s(:long_us),
-    #     :val => tweet.data.to_i,
-    #     :note => tweet.note
-    #   }
-    # end
-    
   end
   
   def picture_description
