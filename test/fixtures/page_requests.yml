@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  url: MyText
+  method: MyText
+  cookies: MyText
+  user_agent: MyText
+  remote_ip: MyText
+  referrer: MyText
+  xhr: false
+
+two:
+  url: MyText
+  method: MyText
+  cookies: MyText
+  user_agent: MyText
+  remote_ip: MyText
+  referrer: MyText
+  xhr: false

@@ -11,9 +11,8 @@
 
     %link{ :rel => 'shortcut icon', :href => '/favicon.ico', :type => 'image/x-icon' }
     = stylesheet_link_tag 'reset', 'screen', 'lightbox', :cache => true
-    = javascript_include_tag :all, :cache => true
-
-
+    = javascript_include_tag 'prototype', 'effects', 'builder', 'lightbox', 'application', :cache => true
+    
     - unless @javascripts.blank?
       - for javascript in @javascripts
         %script{ :type => 'text/javascript', :src => javascript }

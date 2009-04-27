@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.faq 'faq', :controller => 'home', :action => 'faq'
 
   map.report ':twitter_username/:hashtag', :controller => 'report', :action => 'show'
+  map.update 'import', :controller => 'report', :action => 'import'
 
   # map.report 'r/:twitter_username/:hashtag', :controller => 'report', :action => 'show'
 

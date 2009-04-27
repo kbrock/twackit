@@ -4,8 +4,12 @@ module ApplicationHelper
     content_for :page_title, t
   end
   
+  def enable_analytics?
+    'production' == RAILS_ENV
+  end
+  
   def feedback_page
-    { :href => 'http://twackit.uservoice.com', :onclick => "UserVoice.Popin.show(); return false;" }
+    { :href => 'http://twackit.uservoice.com' }
   end
   
   def url_for_status(tweet)
@@ -16,7 +20,7 @@ module ApplicationHelper
     if time > 2.days.ago
       time_ago_in_words(time) + ' ago'
     else
-      time.to_s(:long)
+      time.to_s(:long_us)
     end
   end
   

@@ -15,7 +15,6 @@ class Tweet < ActiveRecord::Base
 
   validates_uniqueness_of :status_id
   
-  
   named_scope :for_report, lambda { |twitter_user, hashtag|
       { 
         :joins => :hashtags, 
@@ -25,17 +24,17 @@ class Tweet < ActiveRecord::Base
     }
 
 
-  class << self
+  class << self    
     # Find the latest (most recent) Twitter status ID that we've fetched.
     def latest_id
       first(:order => 'status_id desc').status_id rescue nil
     end
 
-    def report(*options)
+    def report *options
       Report.new *options
     end
 
-    def build_for_status(status)
+    def build_for_status status
       new(:status_id => status.id,
           :status_at => status.created_at,
           :from_user => status.from_user,
@@ -43,12 +42,12 @@ class Tweet < ActiveRecord::Base
           :language => status.iso_language_code)
     end
   
-    def build_for_retro_status(status)
-      tweet = build_for_status(status)
+    def build_for_retro_status status
+      tweet = build_for_status status
 
       # custom parsing for pre-existing tweets
       content = tweet.status.dup
-      values = content.scan(Tweet::VALUE_RE)
+      values = content.scan Tweet::VALUE_RE
       tweet.data = values.first if values.any?
 
       # remove hash tags
@@ -88,7 +87,7 @@ class Tweet < ActiveRecord::Base
       return if self.processed?
 
       # TODO handle multiple values
-      values = self.status.scan(VALUE_RE)
+      values = self.status.scan VALUE_RE
       self.data = values.first if values.any?
       
       # remove @recipient

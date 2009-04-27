@@ -2,7 +2,7 @@ class Report
   extend ActiveSupport::Memoizable
   
   attr_reader :tweets, :twitter_username, :hashtag, :title, :values, 
-      :full_name, :picture_url  
+      :full_name, :picture_url
   
   def initialize(attribs)
     @hashtag = attribs[:hashtag]

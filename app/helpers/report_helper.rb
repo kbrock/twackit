@@ -12,4 +12,12 @@ module ReportHelper
   def link_to_tweet(t)
     link_to t.value, url_for_status(t), :popup => true
   end
+  
+  def searching_indicator
+    { :style => ('display: none' unless @background_search) } 
+  end
+  
+  def updated_timestamp
+    { :style => ('display: none;' if @background_search) } 
+  end
 end

@@ -1,4 +1,4 @@
-- javascript 'http://www.google.com/jsapi'
+- javascript :visualization, 'http://www.google.com/jsapi'
 - title "#{@report.twitter_username} / #{@report.title}"
 
 %h2
@@ -13,10 +13,22 @@
   Report
 
 - if @report.tweets.any?
-  %p.updated
-    Updated
-    %span.when= smart_timestamp(@report.tweets.last.status_at)
 
+  #updated
+    %p#updating.wait{ searching_indicator } Searching for updates&hellip;
+    %p#updated_at{ updated_timestamp }
+      Updated
+      %span.when= smart_timestamp @report.tweets.last.status_at
+    %p#refresh_prompt{ :style => 'display: none;' }
+      %strong 
+        = succeed '!' do
+          Found
+          %span.count
+      = link_to 'Reload this page'
+      to see 
+      = succeed '.' do
+        %span.pronoun
+      
   %ul.tabs
     %li 
       %a Chart
@@ -24,18 +36,17 @@
       %a Table
       %a Stats
 
-  #chart
+  #chart.report-container
     %h4 Timeline
     #timeline
-      %p Loading...
+      %p.wait Loading...
 
-
-  #calendar
+  #calendar.report-container
     %h4 Calendar
     - 2.downto(0) do |months_ago|
       = tweet_calendar(Date.today << months_ago)
 
-  #stats
+  #stats.report-container
     %h4 Stats
     %dl
       %dt Low
@@ -50,12 +61,13 @@
       %dt Change
       %dd
         = number_with_precision @report.stats[:amount_change], :precision => 2
-        == (#{number_to_percentage(@report.stats[:percent_change], :precision => 2)})
+        = surround '(', ')' do
+          = number_to_percentage @report.stats[:percent_change], :precision => 2
 
-  #raw-data  
+  #raw-data.report-container
     %h4 Data Points
     #data_table
-      %p Loading...
+      %p.wait Loading...
 
 - else
   %p 
@@ -63,6 +75,12 @@
     Twackit searches for new tweets every hour.
 
 :javascript
+  var twitterer = #{@report.twitter_username.to_json};
+  var hashtag = #{@report.hashtag.to_json};
+  var backgroundSearch = #{@background_search.to_json};
+
   vizData = #{@report.visualization_data.to_json};  
   google.load('visualization', '1', {'packages':['annotatedtimeline', 'table']});
   google.setOnLoadCallback(initViz);
+
+  

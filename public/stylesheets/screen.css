@@ -339,16 +339,30 @@ table.calendar td.today {
 /*    border-bottom: 2px solid #ff6;*/
 }
 
-.report .updated {
-    font-size: 70%;
+.report #updated {
+    font-size: 80%;
     float: right;
 }
-.report .updated .when {
+.report #updated .when {
     font-weight: bold;
+}
+
+.wait {
+    background: url(/images/wait.gif) no-repeat 0 50%;
+    padding-left: 13px;
+}
+
+.report-container .wait {
+    font-size: 80%;
 }
 
 .tabs { display: none; }
 
 .annotatedtimelinetable, .annotatedtimelinetable * {
     vertical-align: top;
+}
+
+.report #refresh_prompt {
+    padding-left: 18px;
+    background: url(/images/tick.png) no-repeat 0 50%;
 }
