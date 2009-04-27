@@ -26,22 +26,22 @@
       %span
         %a.close{ :href => '#', :onclick => "$('message').hide()" } &times; 
       %p
-        Twackit is still a work in progress, so any
+        Twackit is still a work in progress, so all
         %strong
           %a.feedback{ feedback_page } feedback
-        would be awesome!
+        is welcome!
 
     #page
       #header
 
         #report-form
-          - form_tag root_path do
+          - form_tag to_report_path, :method => :get do
             %p
               http://twackit.com/
-              = text_field_tag :twitter_username, @twitter_username || 'your Twitter username', :onfocus => 'this.select();'
+              = text_field_tag :twitterer, @twitterer || 'your Twitter username', :onfocus => 'this.select();'
               = '/'
               = text_field_tag :hashtag, @hashtag || 'your twacking hashtag', :onfocus => 'this.select();'
-              = submit_tag 'Report'
+              = submit_tag 'Report', :name => nil
 
   
         %h1= link_to 'Twackit', root_path
@@ -55,11 +55,13 @@
           = partial 'layouts/pledgie'
         %p
           Copyright &copy; 2009, 
-          == #{link_to 'Jeremy Weiskotten', 'http://twitter.com/twackit'}.
+          == #{link_to 'Jeremy Weiskotten', 'http://weiskotten.com'}.
           %strong
             %a.feedback{ feedback_page } Feedback
           |
           = link_to 'FAQ', faq_path
+          |
+          = link_to '@twackit', 'http://twitter.com/twackit'
 
     = partial 'layouts/uservoice'
     = partial 'layouts/google_analytics'

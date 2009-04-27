@@ -5,10 +5,11 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "home"
   map.faq 'faq', :controller => 'home', :action => 'faq'
 
-  map.report ':twitter_username/:hashtag', :controller => 'report', :action => 'show'
-  map.update 'import', :controller => 'report', :action => 'import'
+  map.report ':twitterer/:hashtag', :controller => 'report', :action => 'show'
+  map.to_report 'report', :controller => 'report', :action => 'redirector'
+  map.import 'import', :controller => 'report', :action => 'import'
 
-  # map.report 'r/:twitter_username/:hashtag', :controller => 'report', :action => 'show'
+  # map.report 'r/:twitterer/:hashtag', :controller => 'report', :action => 'show'
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'

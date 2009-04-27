@@ -1,73 +1,69 @@
 - javascript :visualization, 'http://www.google.com/jsapi'
-- title "#{@report.twitter_username} / #{@report.title}"
+- title "#{@report.twitterer} / #{@report.title}"
 
+
+#updated
+  %p#updating.wait{ searching_indicator } Searching for updates&hellip;
+  %p#updated_at{ updated_timestamp }
+    Updated
+    %span.when= smart_timestamp @report.tweets.last.status_at
+  %p#refresh_prompt{ :style => 'display: none;' }
+    %strong 
+      = succeed '!' do
+        Found
+        %span.count
+    = link_to 'Reload this page'
+    to see 
+    = succeed '.' do
+      %span.pronoun
 %h2
-  - twitter_profile_url = "http://twitter.com/#{@report.twitter_username}"
+  - twitter_profile_url = "http://twitter.com/#{@report.twitterer}"
 
   = succeed '&#8217;s' do
     - if @report.picture_url.blank?
       = link_to @report.full_name, twitter_profile_url
     - else 
       = link_to image_tag(@report.picture_url, :alt => @report.picture_description) + @report.full_name, twitter_profile_url
-  = @report.title
+  = @report.title  
   Report
 
 - if @report.tweets.any?
 
-  #updated
-    %p#updating.wait{ searching_indicator } Searching for updates&hellip;
-    %p#updated_at{ updated_timestamp }
-      Updated
-      %span.when= smart_timestamp @report.tweets.last.status_at
-    %p#refresh_prompt{ :style => 'display: none;' }
-      %strong 
-        = succeed '!' do
-          Found
-          %span.count
-      = link_to 'Reload this page'
-      to see 
-      = succeed '.' do
-        %span.pronoun
-      
-  %ul.tabs
-    %li 
-      %a Chart
-      %a Calendar
-      %a Table
-      %a Stats
-
   #chart.report-container
     %h4 Timeline
-    #timeline
+    #timeline.data
       %p.wait Loading...
 
   #calendar.report-container
     %h4 Calendar
-    - 2.downto(0) do |months_ago|
-      = tweet_calendar(Date.today << months_ago)
+    .data
+      - 2.downto(0) do |months_ago|
+        = tweet_calendar(Date.today << months_ago)
 
-  #stats.report-container
-    %h4 Stats
-    %dl
-      %dt Low
-      %dd= @report.stats[:min]
+  #stats-and-data
+    #stats.report-container
+      %h4 Stats
+      .data
+        %dl
+          %dt Low
+          %dd= @report.stats[:min]
 
-      %dt High
-      %dd= @report.stats[:max]
+          %dt High
+          %dd= @report.stats[:max]
 
-      %dt Average
-      %dd= @report.stats[:avg]
+          %dt Average
+          %dd= number_with_precision @report.stats[:avg], :precision => 2
 
-      %dt Change
-      %dd
-        = number_with_precision @report.stats[:amount_change], :precision => 2
-        = surround '(', ')' do
-          = number_to_percentage @report.stats[:percent_change], :precision => 2
+          %dt Change
+          %dd
+            = number_with_precision @report.stats[:amount_change], :precision => 2
+            = surround '(', ')' do
+              = number_to_percentage @report.stats[:percent_change], :precision => 2
 
-  #raw-data.report-container
-    %h4 Data Points
-    #data_table
-      %p.wait Loading...
+    #raw-data.report-container
+      %h4 Data Points
+      #data_table.data
+        %p.wait Loading...
 
 - else
   %p 
@@ -75,7 +71,7 @@
     Twackit searches for new tweets every hour.
 
 :javascript
-  var twitterer = #{@report.twitter_username.to_json};
+  var twitterer = #{@report.twitterer.to_json};
   var hashtag = #{@report.hashtag.to_json};
   var backgroundSearch = #{@background_search.to_json};
 

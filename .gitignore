@@ -5,3 +5,5 @@ config/database.yml
 db/*.sqlite3
 vendor/gems/**/*
 vendor/rails/**/*
+public/stylesheets/all.css
+test/performance/tmp/**/*

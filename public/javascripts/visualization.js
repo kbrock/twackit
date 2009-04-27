@@ -28,27 +28,26 @@ document.observe("dom:loaded", function() {
         't': hashtag
       },
       onSuccess: function(transport) {
-        if (transport.responseJSON != null) {
+        var count = transport.responseJSON;
+        if (count > 0) {
           // new tweets were imported, prompt to refresh page
-          var count = transport.responseJSON + ' new tweet';
-          var pronoun = 'it';
-
-          if (transport.responseJSON > 1) { 
-            // pluralize
-            count += 's';
-            pronoun = 'them';
-          }
-      
-          $$('#refresh_prompt .count')[0].update(count);
-          $$('#refresh_prompt .pronoun')[0].update(pronoun);
-          $('refresh_prompt').show();
-          new Effect.Highlight('refresh_prompt');
+          var pronoun = (count > 1) ? 'them' : 'it';
+          var count_label = count + ' new tweet';
+          if (count > 1) { count_label += 's'; }
+          
+          var prompt = $('refresh_prompt');
+          prompt.down('.count').update(count_label);
+          prompt.down('.pronoun').update(pronoun);
+          prompt.show();
+          new Effect.Highlight('refresh_prompt', { keepBackgroundImage: true });
         }
         else {
+          // just show the timestamp
           $('updated_at').show();
         }
       },
       onComplete: function() {
+        // hide background process indicator
         $('updating').hide();
       }
     });

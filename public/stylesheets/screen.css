@@ -207,14 +207,6 @@ a.screenshot {
     margin-bottom: .5em;
     margin-top: 1em;
 }
-#content h4 {
-    font-size: 120%;
-    font-weight: normal;
-    margin-bottom: .5em;
-    padding-bottom: 4px;
-    border-bottom: 2px solid #eee;
-    color: #333;
-}
 
 #content p {
     margin-bottom: 1em;
@@ -227,14 +219,6 @@ a {
 }
 a:hover {
     color: #69f;
-}
-
-#timeline {
-    height: 220px;
-}
-
-#calendar {
-    padding-top: 2em;    
 }
 
 table.calendar {
@@ -285,40 +269,6 @@ table.calendar td.today {
     background-color: #ccc;
 }
 
-
-#stats {
-    clear: both;
-    width: 300px;
-    padding-top: 2em;
-}
-#stats dl {
-    line-height: 1.2em;
-}
-#stats dl dt {
-    float: left;
-    width: 4em;
-    margin-right: 2em;
-    font-weight: bold;
-}
-
-#raw-data {
-    padding-top: 2em;
-}
-
-#raw-data table tbody td,
-#raw-data table tbody th {
-    padding: .25em 1em 0 .5em;
-    border-bottom: 1px solid #ccc;
-    text-align: left;
-}
-#raw-data table thead th {
-    background: #eee;
-    padding: .5em 1em .25em .5em;
-    text-align: left;
-    font-size: 80%;
-    text-transform: uppercase;
-}
-
 #content blockquote.tweet {
     width: 32em; 
     margin: .5em 0;
@@ -339,30 +289,69 @@ table.calendar td.today {
 /*    border-bottom: 2px solid #ff6;*/
 }
 
-.report #updated {
-    font-size: 80%;
-    float: right;
-}
-.report #updated .when {
-    font-weight: bold;
-}
-
 .wait {
     background: url(/images/wait.gif) no-repeat 0 50%;
     padding-left: 13px;
 }
 
-.report-container .wait {
-    font-size: 80%;
-}
-
-.tabs { display: none; }
-
-.annotatedtimelinetable, .annotatedtimelinetable * {
+.report.show .annotatedtimelinetable, .annotatedtimelinetable * {
     vertical-align: top;
 }
-
-.report #refresh_prompt {
+.report.show h4 {
+    font-size: 100%;
+    font-weight: normal;
+    margin-bottom: .5em;
+    padding: .5em;
+    color: #333;
+    background: #eee;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+.report.show .report-container .data {
+    padding: 0 .5em;
+}
+.report.show #timeline {
+/*    height: 220px;*/
+}
+.report.show #calendar {
+    padding-top: 2em;    
+}
+.report.show #stats-and-data {
+    clear: both;
+    min-height: 10em;
+}
+.report.show #stats {
+    float: right;
+    width: 300px;
+    padding-top: 2em;
+}
+.report.show #stats dl {
+    line-height: 1.2em;
+}
+.report.show #stats dl dt {
+    float: left;
+    width: 4em;
+    margin-right: 2em;
+    font-weight: bold;
+}
+.report.show #raw-data {
+    padding-top: 2em;
+}
+.report.show #updated {
+    font-size: 80%;
+    float: right;
+    margin-top: 10px;
+    margin-right: .5em;
+}
+.report.show #updated .when {
+    font-weight: bold;
+}
+.report.show #refresh_prompt {
     padding-left: 18px;
     background: url(/images/tick.png) no-repeat 0 50%;
 }
+.report.show .report-container .wait {
+    font-size: 80%;
+}
+
+

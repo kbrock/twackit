@@ -1,43 +1,46 @@
 class ReportController < ApplicationController
+  # Dummy action to handle report form at top of page, just redirects to proper URL.
+  def redirector
+    redirect_to report_path(params), :status => :moved_permanently
+  end
+  
   def show
-    @twitter_username = params[:twitter_username].strip
+    @twitterer = params[:twitterer].gsub('@', '').strip
     @hashtag = params[:hashtag].gsub('#', '').strip
     
-    if @hashtag != params[:hashtag] || @twitter_username != params[:twitter_username]
+    if @hashtag != params[:hashtag] || @twitterer != params[:twitterer]
       # clean up the URL
-      redirect_to report_path(:twitter_username => @twitter_username, :hashtag => @hashtag), :status => :moved_permanently
+      redirect_to report_path(:twitterer => @twitterer, :hashtag => @hashtag), :status => :moved_permanently
       return
     end
     
-    # redirect_to root_url and return if @twitter_username.blank? || @hashtag.blank?
+    @report = Tweet.report :twitterer => @twitterer, :hashtag => @hashtag
     
-    @report = Tweet.report :twitter_username => @twitter_username, :hashtag => @hashtag
-    
-    # determine whether the page should do a background search for new tweets
-    # if it's been at least 60s since the last import, do it
-    @background_search = Import.last.created_at < Time.now - 60 rescue true
+    # Determine whether the page should do a background search for new tweets.
+    # If it's been at least 60s since the last import, do it.
+    @background_search = Import.last.created_at < 60.seconds.ago rescue false
   end
 
   def import
     user = params[:u]
     hashtag = params[:t]
-    
     count_before_import = Tweet.for_report(user, hashtag).count
 
-    # import new stuff
-    import = TwitterImporter.import!
+    begin
+      # import new stuff
+      import = TwitterImporter.import!
+    rescue StandardError => e
+      logger.error 'TwitterImporter.import! failed: ' + e
+    end
 
-    if import.tweets > 0
-      # we found something, but any new stuff from this person?
+    delta = 0
+    if import && import.tweets > 0
+      # We found something, but any new stuff from this person?
       count_after_import = Tweet.uncached { Tweet.for_report(user, hashtag).count }
       delta = count_after_import - count_before_import
-    
-      if delta > 0
-        return render :json => delta.to_json
-      end
     end
-    
-    render :nothing => true, :layout => false
+
+    render :json => delta.to_json
   end
   
 end

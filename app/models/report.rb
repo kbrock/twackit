@@ -1,30 +1,32 @@
 class Report
   extend ActiveSupport::Memoizable
   
-  attr_reader :tweets, :twitter_username, :hashtag, :title, :values, 
+  attr_reader :tweets, :twitterer, :hashtag, :title, :values, 
       :full_name, :picture_url
   
   def initialize(attribs)
     @hashtag = attribs[:hashtag]
-    @twitter_username = attribs[:twitter_username]
+    @twitterer = attribs[:twitterer]
     @title = attribs[:title] ||= attribs[:hashtag].titleize
 
-    @tweets = Tweet.for_report(self.twitter_username, self.hashtag)
+    @tweets = Tweet.for_report(self.twitterer, self.hashtag)
     @values = self.tweets.map { |t| t.value }
 
-    # TODO Using this to fetch things from the API like photo URL and full name. Cache this stuff?
-    twitter_user = Twitter.user(@twitter_username) rescue nil
+    # TODO Using this to fetch things from the API like photo URL and full name. 
+    # Cache this stuff in a Twitterer model that is periodically updated. Or
+    # memcached if/when available.
+    twitter_user = Twitter.user(@twitterer) rescue nil
     if twitter_user
       @full_name = twitter_user.name
       @picture_url = twitter_user.profile_image_url
     else
-      @full_name = @twitter_username
+      @full_name = @twitterer
       @picture_url = nil
     end
   end  
   
-  # Returns data in a structure consumable by a Google Visualization 
-  # DataTable. The format is described at http://code.google.com/apis/visualization/documentation/reference.html#DataTable
+  # Returns data in a structure consumable by a Google Visualization DataTable. 
+  # The format is described at http://code.google.com/apis/visualization/documentation/reference.html#DataTable
   def visualization_data
     cols = [
         { :id => 'date', :label => 'Date', :type => 'date' },
@@ -46,7 +48,7 @@ class Report
   end
   
   def picture_description
-    "#{twitter_username}'s Twitter profile picture"
+    "#{twitterer}'s Twitter profile picture"
   end
   
   def tweets_by_date
