@@ -1,28 +1,16 @@
 class Report
   extend ActiveSupport::Memoizable
   
-  attr_reader :tweets, :twitterer, :hashtag, :title, :values, 
-      :full_name, :picture_url
+  attr_reader :tweets, :twitterer, :hashtag, :title, :values
   
   def initialize(attribs)
     @hashtag = attribs[:hashtag]
-    @twitterer = attribs[:twitterer]
+    @twitterer = Twitterer.with_username attribs[:twitterer]
+
     @title = attribs[:title] ||= attribs[:hashtag].titleize
 
-    @tweets = Tweet.for_report(self.twitterer, self.hashtag)
-    @values = self.tweets.map { |t| t.value }
-
-    # TODO Using this to fetch things from the API like photo URL and full name. 
-    # Cache this stuff in a Twitterer model that is periodically updated. Or
-    # memcached if/when available.
-    twitter_user = Twitter.user(@twitterer) rescue nil
-    if twitter_user
-      @full_name = twitter_user.name
-      @picture_url = twitter_user.profile_image_url
-    else
-      @full_name = @twitterer
-      @picture_url = nil
-    end
+    @tweets = @twitterer.tweets(self.hashtag)
+    @values = @tweets.map { |t| t.value }
   end  
   
   # Returns data in a structure consumable by a Google Visualization DataTable. 

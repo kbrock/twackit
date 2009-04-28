@@ -1,5 +1,5 @@
 - javascript :visualization, 'http://www.google.com/jsapi'
-- title "#{@report.twitterer} / #{@report.title}"
+- title "#{@report.twitterer.username} / #{@report.title}"
 
 
 #updated
@@ -18,13 +18,13 @@
     = succeed '.' do
       %span.pronoun
 %h2
-  - twitter_profile_url = "http://twitter.com/#{@report.twitterer}"
+  - twitter_profile_url = "http://twitter.com/#{@report.twitterer.username}"
 
   = succeed '&#8217;s' do
-    - if @report.picture_url.blank?
-      = link_to @report.full_name, twitter_profile_url
+    - if @report.twitterer.picture_url.blank?
+      = link_to @report.twitterer.full_name, @report.twitterer.picture_url
     - else 
-      = link_to image_tag(@report.picture_url, :alt => @report.picture_description) + @report.full_name, twitter_profile_url
+      = link_to image_tag(@report.twitterer.picture_url, :alt => @report.picture_description) + @report.twitterer.full_name, twitter_profile_url
   = @report.title  
   Report
 
@@ -72,7 +72,7 @@
     Twackit searches for new tweets every minute.
 
 :javascript
-  var twitterer = #{@report.twitterer.to_json};
+  var twitterer = #{@report.twitterer.username.to_json};
   var hashtag = #{@report.hashtag.to_json};
   var backgroundSearch = #{@background_search.to_json};
 
