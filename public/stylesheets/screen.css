@@ -106,13 +106,14 @@ a.screenshot {
 #footer {
     clear: both;
     color: #666;
-    background: #ccc;
+    background: #ccc url(/images/logo-sm.png) no-repeat center 6px;
     padding-bottom: 1em;
+    padding-top: 34px;
 }
 #footer p {
     text-align: center;
     font-size: 70%;
-    padding: 1em 0 0;
+    padding: 0;
 }
 #footer a {
     color: #333;
@@ -161,19 +162,20 @@ a.screenshot {
 }
 
 #content.home dl.quote {
-    margin-top: 350px;
-    margin-right: 0px;
-    width: 100%;
+    margin-top: 320px;
     text-align: right;
-    padding: 1em 0;
-    border-width: 4px 0;
-    border-style: solid;
-    border-color: #ccc;
+    
+    background: #eef;
+    border: 2px solid #ccf;
+    padding: 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    
 }
 #content.home dl.quote dt {
     font-family: georgia,times,serif;
     font-size: 140%;
-    color: #666;
+    color: #333;
 }
 #content.home dl.quote dd {
     margin-right: 8px;
@@ -272,12 +274,13 @@ table.calendar td.today {
 #content blockquote.tweet {
     width: 32em; 
     margin: .5em 0;
-    background: #eef;
-    border: 2px solid #ccf;
-    padding: 1em;
+    padding: .5em;
+    background: #f4f4f4;
     font-family: monaco,consolas,'courier new',courier,monospace;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    -moz-border-radius: 4px;
+    border-style: none solid solid none;
+    border-width: 2px;
+    border-color: #eee;
 }
 #content blockquote.tweet p {
     margin: 0 !important;
