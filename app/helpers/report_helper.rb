@@ -13,11 +13,11 @@ module ReportHelper
     link_to t.value, url_for_status(t), :popup => true
   end
   
-  def searching_indicator
+  def searching_indicator_options
     { :style => ('display: none' unless @background_search) } 
   end
   
-  def updated_timestamp
+  def updated_timestamp_options
     { :style => ('display: none;' if @background_search) } 
   end
 end

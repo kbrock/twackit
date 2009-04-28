@@ -3,10 +3,11 @@
 
 
 #updated
-  %p#updating.wait{ searching_indicator } Searching for updates&hellip;
-  %p#updated_at{ updated_timestamp }
-    Updated
-    %span.when= smart_timestamp @report.tweets.last.status_at
+  %p#updating.wait{ searching_indicator_options } Searching for updates&hellip;
+  %p#updated_at{ updated_timestamp_options }
+    - if @report.tweets.any?
+      Updated
+      %span.when= smart_timestamp @report.tweets.last.status_at
   %p#refresh_prompt{ :style => 'display: none;' }
     %strong 
       = succeed '!' do
@@ -68,7 +69,7 @@
 - else
   %p 
     %strong No tweets found yet.
-    Twackit searches for new tweets every hour.
+    Twackit searches for new tweets every minute.
 
 :javascript
   var twitterer = #{@report.twitterer.to_json};
