@@ -9,8 +9,6 @@ ActionController::Routing::Routes.draw do |map|
   map.to_report 'report', :controller => 'report', :action => 'redirector'
   map.import 'import', :controller => 'report', :action => 'import'
 
-  # map.report 'r/:twitterer/:hashtag', :controller => 'report', :action => 'show'
-
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action

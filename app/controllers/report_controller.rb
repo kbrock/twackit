@@ -1,7 +1,10 @@
 class ReportController < ApplicationController
   # Dummy action to handle report form at top of page, just redirects to proper URL.
   def redirector
-    redirect_to report_path(params), :status => :moved_permanently
+    twitterer = params[:twitterer].gsub('@', '').strip
+    hashtag = params[:hashtag].gsub('#', '').strip
+
+    redirect_to report_path(:twitterer => twitterer, :hashtag => hashtag), :status => :moved_permanently
   end
   
   def show
