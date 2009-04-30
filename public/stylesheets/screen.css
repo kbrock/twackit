@@ -358,3 +358,11 @@ table.calendar td.today {
 }
 
 
+.flash {
+    padding: .5em;
+    font-weight: bold;
+}
+.flash.error {
+    background: #fee;
+    color: #933;
+}

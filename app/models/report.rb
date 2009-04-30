@@ -4,9 +4,9 @@ class Report
   attr_reader :tweets, :twitterer, :hashtag, :title, :values
   
   def initialize(attribs)
-    @hashtag = attribs[:hashtag]
+    @hashtag = attribs[:hashtag]    
     @twitterer = Twitterer.with_username attribs[:twitterer]
-
+    
     @title = attribs[:title] ||= attribs[:hashtag].titleize
 
     @tweets = @twitterer.tweets(self.hashtag)

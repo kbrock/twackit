@@ -47,7 +47,9 @@
         %h1= link_to 'Twackit', root_path
         %p.tagline Whatever it is, track it with Twackit!
     
-      #content{ :class => [controller.controller_name, controller.action_name].join(' ') }          
+      #content{ :class => [controller.controller_name, controller.action_name].join(' ') }
+        = content_tag :p, flash[:error], :class => "flash error" unless flash[:error].blank?
+    		
         = yield
 
       #footer

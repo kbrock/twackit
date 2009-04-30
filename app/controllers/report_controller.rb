@@ -22,6 +22,9 @@ class ReportController < ApplicationController
     # Determine whether the page should do a background search for new tweets.
     # If it's been at least 60s since the last import, do it.
     @background_search = Import.last.created_at < 60.seconds.ago rescue false
+  rescue InvalidTwitterUsername
+    flash[:error] = "Couldn't find a Twitterer named #{fancy_quote @twitterer}."
+    redirect_to faq_path
   end
 
   def import

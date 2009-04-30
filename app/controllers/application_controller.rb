@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  helper_method :fancy_quote
   
   before_filter :log_request
 
@@ -17,6 +18,10 @@ class ApplicationController < ActionController::Base
   
   
 protected
+  def fancy_quote(str)
+    "&#147;#{str}&#148;"
+  end
+
 
   def log_request
     PageRequest.create :url => request.url,

@@ -1,3 +1,5 @@
+class InvalidTwitterUsername < StandardError; end
+
 class Twitterer < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
@@ -22,12 +24,10 @@ class Twitterer < ActiveRecord::Base
   end
   
   def update_values!
-    if twitter_user
-      self.full_name = twitter_user.name
-      self.picture_url = twitter_user.profile_image_url
-    else
-      self.full_name ||= self.username
-    end
+    twitter_user = self.twitter_user
+
+    self.full_name = twitter_user.name
+    self.picture_url = twitter_user.profile_image_url
     
     self.save!
   end
@@ -41,7 +41,9 @@ class Twitterer < ActiveRecord::Base
     # Use the Twitter API to fetch a representation of the Twitter user, which
     # includes attributes like #name and #profile_image_url.
     def twitter_user
-      twitter_user = Twitter.user(self.username) rescue nil
+      user = Twitter.user(self.username) rescue nil
+      raise InvalidTwitterUsername if user.nil?
+      user
     end
     memoize :twitter_user
 end
