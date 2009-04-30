@@ -7,7 +7,7 @@ class Tweet < ActiveRecord::Base
   # users with same hashtag.
   has_many :hashtags, :dependent => :destroy
 
-  validates_presence_of :status_id, :status_at, :from_user, :status, :data
+  validates_presence_of :status_id, :status_at, :from_user, :status_text, :data
   
   before_validation_on_create :parse_status
   after_create :create_hashtags
@@ -37,7 +37,7 @@ class Tweet < ActiveRecord::Base
       new(:status_id => status.id,
           :status_at => status.created_at,
           :from_user => status.from_user,
-          :status => status.text,
+          :status_text => status.status_text,
           :language => status.iso_language_code)
     end
   
@@ -45,7 +45,7 @@ class Tweet < ActiveRecord::Base
       tweet = build_for_status status
 
       # custom parsing for pre-existing tweets
-      content = tweet.status.dup
+      content = tweet.status_text.dup
       values = content.scan Tweet::VALUE_RE
       tweet.data = values.first if values.any?
 
@@ -84,13 +84,12 @@ class Tweet < ActiveRecord::Base
     # @twackit -11,057.23 #net-worth I be broke
     def parse_status
       return if self.processed?
-
       # TODO handle multiple values
-      values = self.status.scan VALUE_RE
+      values = self.status_text.scan VALUE_RE
       self.data = values.first if values.any?
       
       # remove @recipient
-      content = self.status.gsub /#{AT_TWITTER_ID}\b/, ''
+      content = self.status_text.gsub /#{AT_TWITTER_ID}\b/, ''
 
       # remove hash tags
       content.gsub! HASHTAGS_RE, ''
@@ -109,7 +108,7 @@ class Tweet < ActiveRecord::Base
 
     # after_create
     def create_hashtags
-      self.status.scan(HASHTAGS_RE).each do |v|
+      self.status_text.scan(HASHTAGS_RE).each do |v|
         self.hashtags.create!(:value => v.delete('#'))
       end
     end

@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class HomeControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "GET root" do
+    # get '/'
+    # assert_response :ok
+    # assert_
   end
 end

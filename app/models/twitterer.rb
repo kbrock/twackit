@@ -1,7 +1,8 @@
 class Twitterer < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
+
   validates_presence_of :username
   validates_presence_of :full_name
-  validates_presence_of :picture_url
   
   validates_uniqueness_of :username
   
@@ -21,7 +22,6 @@ class Twitterer < ActiveRecord::Base
   end
   
   def update_values!
-    twitter_user = Twitter.user(self.username) rescue nil
     if twitter_user
       self.full_name = twitter_user.name
       self.picture_url = twitter_user.profile_image_url
@@ -35,4 +35,13 @@ class Twitterer < ActiveRecord::Base
   def tweets(hashtag)
     Tweet.for_report(self.username, hashtag)
   end
+  
+  protected
+  
+    # Use the Twitter API to fetch a representation of the Twitter user, which
+    # includes attributes like #name and #profile_image_url.
+    def twitter_user
+      twitter_user = Twitter.user(self.username) rescue nil
+    end
+    memoize :twitter_user
 end

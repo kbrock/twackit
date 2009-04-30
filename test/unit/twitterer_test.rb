@@ -1,8 +1,69 @@
 require 'test_helper'
+require 'ostruct'
 
 class TwittererTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  setup :stub_twitter_user
+  
+  test "tweets" do
+    twitterer = Factory :twitterer, :username => 'bob'
+    Factory :tweet, :from_user => 'bob', :status_text => '@twackit 100 #expenses #lunch'
+    Factory :tweet, :from_user => 'bob', :status_text => '@twackit 1.25 #expenses #tolls'
+    Factory :tweet, :from_user => 'bob', :status_text => '@twackit 35 #mpg'
+    
+    assert_equal 2, twitterer.tweets('expenses').size
+    assert_equal 1, twitterer.tweets('tolls').size
   end
+  
+  test "stale?" do
+    twitterer = Factory.build :twitterer, :username => 'bob'
+    assert twitterer.stale?
+
+    twitterer.save!
+    assert !twitterer.stale?
+
+    twitterer.updated_at = 1.day.ago
+    assert twitterer.stale?    
+  end
+  
+  test "with_username creates new record for unknown username" do
+    assert_equal 0, Twitterer.count
+    twitterer = Twitterer.with_username('doctorzaius')
+
+    assert_not_nil twitterer
+    assert_equal 1, Twitterer.count
+    assert_equal 'doctorzaius', twitterer.username
+    assert_equal 'Doctor Z', twitterer.full_name
+    assert_equal 'zaius.jpg', twitterer.picture_url
+    assert !twitterer.stale?
+  end
+
+  test "with_username returns existing record for username" do
+    twitterer = Factory :twitterer, :username => 'bob', :updated_at => 0.9.days.ago
+    assert !twitterer.stale?, 'because updated_at less than a day ago'
+    found = Twitterer.with_username 'bob'
+    assert_equal twitterer, found
+    assert_equal twitterer.updated_at.to_s, found.updated_at.to_s
+    assert !twitterer.stale?
+  end
+  
+  test "with_username for stale record updates values" do
+    twitterer = Factory :twitterer, 
+        :username => 'doctorzaius', :full_name => 'Old', :updated_at => 1.1.days.ago
+    assert twitterer.stale?, 'because updated_at more than a day ago'
+    found = Twitterer.with_username 'doctorzaius'
+    assert_equal twitterer, found
+    assert_equal 'Doctor Z', found.full_name
+    assert found.updated_at - twitterer.updated_at > 1.day
+    assert !found.stale?
+  end
+
+
+  protected
+  
+    def stub_twitter_user
+      # stub the method that normally calls the twitter api
+      mock_twitter_user = OpenStruct.new :name => 'Doctor Z', :profile_image_url => 'zaius.jpg'
+      Twitterer.any_instance.stubs(:twitter_user).returns(mock_twitter_user)
+    end
+    
 end

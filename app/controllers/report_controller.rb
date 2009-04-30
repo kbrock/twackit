@@ -33,6 +33,7 @@ class ReportController < ApplicationController
       # import new stuff
       import = TwitterImporter.import!
     rescue StandardError => e
+      # TODO something like notify_hoptoad?
       logger.error 'TwitterImporter.import! failed: ' + e
     end
 
