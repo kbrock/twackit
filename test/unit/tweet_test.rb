@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 require 'ostruct'
 
 class TweetTest < ActiveSupport::TestCase
@@ -17,6 +17,8 @@ class TweetTest < ActiveSupport::TestCase
     assert tweet.processed?
     assert_equal 'doctorzaius', tweet.from_user
     assert_equal 'en', tweet.language
+    
+    # this stuff gets parsed from status_text
     assert_equal 'this is a note', tweet.note
     assert_equal '175', tweet.data
     assert_equal ['weight', 'tag2'], tweet.hashtags.map(&:value)

@@ -1,16 +1,18 @@
 class Report
   extend ActiveSupport::Memoizable
   
-  attr_reader :tweets, :twitterer, :hashtag, :title, :values
+  attr_reader :tweets, :twitterer, :hashtag, :title
   
   def initialize(attribs)
+    raise ArgumentError, 'hashtag must be specified' if attribs[:hashtag].blank?
+    raise ArgumentError, 'twitterer must be specified' if attribs[:twitterer].blank?
+    
     @hashtag = attribs[:hashtag]    
     @twitterer = Twitterer.with_username attribs[:twitterer]
-    
+
     @title = attribs[:title] ||= attribs[:hashtag].titleize
 
     @tweets = @twitterer.tweets(self.hashtag)
-    @values = @tweets.map { |t| t.value }
   end  
   
   # Returns data in a structure consumable by a Google Visualization DataTable. 
@@ -36,7 +38,7 @@ class Report
   end
   
   def picture_description
-    "#{twitterer}'s Twitter profile picture"
+    "#{twitterer.full_name}'s Twitter profile picture"
   end
   
   def tweets_by_date
@@ -60,4 +62,8 @@ class Report
   end
   memoize :stats
 
+  def values
+    tweets.map { |t| t.value }
+  end
+  memoize :values
 end

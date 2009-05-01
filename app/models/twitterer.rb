@@ -9,14 +9,19 @@ class Twitterer < ActiveRecord::Base
   validates_uniqueness_of :username
   
   class << self
-    def with_username(username)
-      twitterer = find_by_username(username) 
-      twitterer ||= Twitterer.new(:username => username)
+    def with_username username
+      twitterer = find_by_username username
+      twitterer ||= Twitterer.new :username => username
       
       twitterer.update_values! if twitterer.stale?
 
       twitterer
     end
+    
+    # def report options
+    #   options[:twitterer] = username
+    #   Report.new options
+    # end    
   end
 
   def stale?
@@ -25,6 +30,7 @@ class Twitterer < ActiveRecord::Base
   
   def update_values!
     twitter_user = self.twitter_user
+    raise InvalidTwitterUsername if twitter_user.nil?
 
     self.full_name = twitter_user.name
     self.picture_url = twitter_user.profile_image_url
@@ -32,8 +38,8 @@ class Twitterer < ActiveRecord::Base
     self.save!
   end
 
-  def tweets(hashtag)
-    Tweet.for_report(self.username, hashtag)
+  def tweets hashtag
+    Tweet.for_report self.username, hashtag
   end
   
   protected
@@ -41,9 +47,7 @@ class Twitterer < ActiveRecord::Base
     # Use the Twitter API to fetch a representation of the Twitter user, which
     # includes attributes like #name and #profile_image_url.
     def twitter_user
-      user = Twitter.user(self.username) rescue nil
-      raise InvalidTwitterUsername if user.nil?
-      user
+      Twitter.user(self.username) rescue nil
     end
     memoize :twitter_user
 end

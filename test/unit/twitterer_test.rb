@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 require 'ostruct'
 
 class TwittererTest < ActiveSupport::TestCase
@@ -57,6 +57,12 @@ class TwittererTest < ActiveSupport::TestCase
     assert !found.stale?
   end
 
+  test "with_username given invalid username raises" do
+    Twitterer.any_instance.stubs(:twitter_user).returns(nil)
+    assert_raise(InvalidTwitterUsername) do
+      Twitterer.with_username 'bogus'
+    end
+  end
 
   protected
   

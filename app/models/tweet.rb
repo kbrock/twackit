@@ -29,10 +29,6 @@ class Tweet < ActiveRecord::Base
       first(:order => 'status_id desc').status_id rescue nil
     end
 
-    def report *options
-      Report.new *options
-    end
-
     def build_for_status status
       new(:status_id => status.id,
           :status_at => status.created_at,
