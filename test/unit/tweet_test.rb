@@ -7,7 +7,7 @@ class TweetTest < ActiveSupport::TestCase
     status = OpenStruct.new(
         :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
         :from_user => 'doctorzaius',
-        :status_text => '@twackit 175 #weight #tag2 this is a note',
+        :text => '@twackit 175 #weight #tag2 this is a note',
         :iso_language_code => 'en')
         
     tweet = Tweet.build_for_status status    
@@ -28,7 +28,7 @@ class TweetTest < ActiveSupport::TestCase
     status = OpenStruct.new(
         :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
         :from_user => 'doctorzaius',
-        :status_text => '@twackit  180            #calories  Banana Pudding Ice Cream',
+        :text => '@twackit  180            #calories  Banana Pudding Ice Cream',
         :iso_language_code => 'en')
 
     tweet = Tweet.build_for_status status    

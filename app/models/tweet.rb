@@ -33,13 +33,13 @@ class Tweet < ActiveRecord::Base
       new(:status_id => status.id,
           :status_at => status.created_at,
           :from_user => status.from_user,
-          :status_text => status.status_text,
+          :status_text => status.text,
           :language => status.iso_language_code)
     end
   
     def build_for_retro_status status
       tweet = build_for_status status
-
+      
       # custom parsing for pre-existing tweets
       content = tweet.status_text.dup
       values = content.scan Tweet::VALUE_RE
@@ -81,6 +81,7 @@ class Tweet < ActiveRecord::Base
     def parse_status
       return if self.processed?
       # TODO handle multiple values
+      
       values = self.status_text.scan VALUE_RE
       self.data = values.first if values.any?
       
