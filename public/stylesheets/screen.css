@@ -106,11 +106,12 @@ a.screenshot {
 #footer {
     clear: both;
     color: #666;
-    background: #ccc url(/images/logo-sm.png) no-repeat center 6px;
-    padding-bottom: 1em;
-    padding-top: 34px;
+    background: #ccc url(/images/grain-gray.png);
 }
 #footer p {
+    padding-top: 34px !important;
+    padding-bottom: 1em !important;
+    background: url(/images/logo-sm.png) no-repeat center 6px;
     text-align: center;
     font-size: 70%;
     padding: 0;
@@ -128,7 +129,9 @@ a.screenshot {
     padding: 1.5em 1em;
     font-size: 90%;
     background: #fff;
-    border: 4px solid #ccc;
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 4px 4px 0 4px;
     color: #333;
 
     -moz-border-radius-topleft: 8px;
@@ -233,7 +236,7 @@ table.calendar th.monthName {
     font-weight: normal;
 }
 table.calendar tr.dayName th {
-    background-color: #333;
+    background: #333 url(/images/grain-black.png);
     border: 1px solid #333;
     color: #fff;
     font-size: 70%;
