@@ -3,4 +3,9 @@ document.observe("dom:loaded", function() {
   $$('a.feedback').each(function(element) {
     element.observe('click', function(e) { e.stop(); UserVoice.Popin.show(); });
   });
+
+  // Dismiss message bar.
+  $$('#message a.close').each(function(element) {
+    element.observe('click', function(e) { e.stop(); $('message').hide(); })
+  });
 });

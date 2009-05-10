@@ -21,15 +21,8 @@
       - for style in @styles
         %link{ :rel => 'stylesheet', :href => style, :type => 'text/css', :media => 'screen' }
     
-  %body  
-    #message.work-in-progress
-      %span
-        %a.close{ :href => '#', :onclick => "$('message').hide()" } &times; 
-      %p
-        Twackit is still a work in progress, so all
-        %strong
-          %a.feedback{ feedback_page } feedback
-        is welcome!
+  %body
+    = partial 'layouts/message_work_in_progress'
 
     #page
       #header
@@ -48,14 +41,16 @@
         %p.tagline Whatever it is, track it with Twackit!
     
       #content{ :class => [controller.controller_name, controller.action_name].join(' ') }
-        = content_tag :p, flash[:error], :class => "flash error" unless flash[:error].blank?
+        - unless flash[:error].blank?
+          %p.flash.error
+            = flash[:error]
     		
         = yield
 
       #footer
         %p
-          Copyright &copy; 2009, 
-          == #{link_to 'Jeremy Weiskotten', 'http://weiskotten.com'}.
+          Copyright &copy; 
+          == #{Date.today.year}, #{link_to 'Jeremy Weiskotten', 'http://weiskotten.com'}.
           %strong
             %a.feedback{ feedback_page } Feedback
           |

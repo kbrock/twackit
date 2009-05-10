@@ -41,7 +41,7 @@ a.screenshot {
     float: right; 
     color: #444; 
     font-size: 90%;
-    background: #ccc url(/images/grain-gray.png);
+    background: #ccc;
     margin: 0;
     padding: 1em;
 
@@ -106,7 +106,7 @@ a.screenshot {
 #footer {
     clear: both;
     color: #666;
-    background: #ccc url(/images/grain-gray.png);
+    background: #ccc;
 }
 #footer p {
     padding-top: 34px !important;
@@ -234,6 +234,9 @@ table.calendar {
 table.calendar th.monthName {
     padding: .25em 0;
     font-weight: normal;
+    font-size: 80%;
+    text-transform: uppercase;
+    text-align: left;
 }
 table.calendar tr.dayName th {
     background: #333 url(/images/grain-black.png);
@@ -280,10 +283,11 @@ table.calendar td.today {
     padding: .5em;
     background: #f4f4f4;
     font-family: monaco,consolas,'courier new',courier,monospace;
-    -moz-border-radius: 4px;
     border-style: none solid solid none;
     border-width: 2px;
     border-color: #eee;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
 }
 #content blockquote.tweet p {
     margin: 0 !important;
@@ -292,7 +296,6 @@ table.calendar td.today {
 
 .highlight {
     background: #ff9;
-/*    border-bottom: 2px solid #ff6;*/
 }
 
 .wait {
@@ -304,20 +307,17 @@ table.calendar td.today {
     vertical-align: top;
 }
 .report.show h4 {
-    font-size: 100%;
+    font-size: 80%;
     font-weight: normal;
     margin-bottom: .5em;
-    padding: .5em;
+    padding: .5em 0;
     color: #333;
-    background: #eee;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-bottom: 2px solid #eee;
+    text-transform:uppercase;
 }
 .report.show .report-container .data {
-    padding: 0 .5em;
 }
 .report.show #timeline {
-/*    height: 220px;*/
 }
 .report.show #calendar {
     padding-top: 2em;    
