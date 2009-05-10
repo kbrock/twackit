@@ -23,6 +23,27 @@ class TweetTest < ActiveSupport::TestCase
     assert_equal ['weight', 'tag2'], tweet.hashtags.map(&:value)
   end
   
+  test "build_for_status with value after hashtag" do
+    # mock a status objects returned by the Twitter search API 
+    status = OpenStruct.new(
+        :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
+        :from_user => 'doctorzaius',
+        :text => '@twackit #weight 175 this is a note',
+        :iso_language_code => 'en')
+        
+    tweet = Tweet.build_for_status status    
+    tweet.save!
+    
+    assert tweet.processed?
+    assert_equal 'doctorzaius', tweet.from_user
+    assert_equal 'en', tweet.language
+    
+    # this stuff gets parsed from status_text
+    assert_equal 'this is a note', tweet.note
+    assert_equal '175', tweet.data
+    assert_equal ['weight'], tweet.hashtags.map(&:value)
+  end
+  
   test "with spaces" do
     # mock a status objects returned by the Twitter search API 
     status = OpenStruct.new(

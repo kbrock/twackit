@@ -47,7 +47,8 @@ class Twitterer < ActiveRecord::Base
     # Use the Twitter API to fetch a representation of the Twitter user, which
     # includes attributes like #name and #profile_image_url.
     def twitter_user
-      Twitter.user(self.username) rescue nil
+      u = Twitter.user(self.username) rescue nil
+      return u unless u && u.error?
     end
     memoize :twitter_user
 end

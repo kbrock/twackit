@@ -42,6 +42,7 @@ class ReportControllerTest < ActionController::TestCase
   end
 
   test "GET show with invalid twitter username redirects to FAQ" do
+    Twitterer.any_instance.stubs(:twitter_user).returns(nil)
     Factory :twitterer, :username => 'doctorzaius'
     get 'show', :twitterer => 'bob', :hashtag => 'weight'
     assert_response :redirect

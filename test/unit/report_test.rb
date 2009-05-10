@@ -11,6 +11,7 @@ class ReportTest < ActiveSupport::TestCase
   end
   
   test "invalid twitter username raises InvalidTwitterUsername" do
+    Twitterer.any_instance.stubs(:twitter_user).returns(nil)
     assert_raise(InvalidTwitterUsername) do
       Report.new :twitterer => 'bogus', :hashtag => 'foo'
     end
