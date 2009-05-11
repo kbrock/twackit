@@ -41,6 +41,7 @@
         %p.tagline Whatever it is, track it with Twackit!
     
       #content{ :class => [controller.controller_name, controller.action_name].join(' ') }
+      
         - unless flash[:error].blank?
           %p.flash.error
             = flash[:error]

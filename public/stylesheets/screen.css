@@ -24,16 +24,6 @@ body {
     font-weight: bold;
 }
 
-a.screenshot {
-    width: 265px; 
-    height: 301px;
-    position: absolute;
-    left: 640px;
-    top: 100px;
-    background-image: url(/images/screenshot_thumbnail.png);
-    background-repeat: no-repeat;
-}
-
 #header {
     padding: 0 0 10px;
 }
@@ -140,6 +130,30 @@ a.screenshot {
     -webkit-border-top-right-radius: 8px;
 }
 
+#content #tweet_this_page {
+    float: right;
+}
+#content #tweet_this_page a span {
+    color: #333;
+    font-weight: normal;
+}
+#content #tweet_this_page a {
+    font-weight: bold;
+    font-family: georgia,times,serif;
+    background: url(/images/twitter.png) no-repeat 0 50%;
+    padding: 4px 8px 4px 34px;
+    margin-right: -8px;
+    display: block;
+    height: 32px;    
+    line-height: 32px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+#content #tweet_this_page a:hover {
+    background-color: #eee;
+    color: #36c;
+}
+
 #content.home p {
     width: 60%;
 }
@@ -149,12 +163,22 @@ a.screenshot {
     margin-right: 20px;
 }
 
+#content.home.index a.screenshot {
+    width: 265px; 
+    height: 301px;
+    position: absolute;
+    left: 660px;
+    top: 150px;
+    background-image: url(/images/screenshot_thumbnail.png);
+    background-repeat: no-repeat;
+}
+
 #content.home.index p.caption {
-    margin-top: 240px;
-    margin-right: 40px;    
+    position: absolute;
+    margin-top: 275px;
+    margin-right: 30px;    
     font-size: 80%;
     width: 260px;
-    font-family: Arial, sans-serif;
     text-align: right;
     float: right;
 }
@@ -165,7 +189,6 @@ a.screenshot {
 }
 
 #content.home dl.quote {
-    margin-top: 320px;
     text-align: right;
     
     background: #eef;
@@ -175,9 +198,27 @@ a.screenshot {
     -webkit-border-radius: 8px;
     
 }
+#content.home.index dl.quote {
+    margin-top: 345px;
+}
+#content.home.faq dl.quote {
+    margin-top: 100px;
+}
+
+#content.home.index dl.quote {
+    margin-top: 345px;
+    text-align: right;
+    
+    background: #eef;
+    border: 2px solid #ccf;
+    padding: 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;    
+}
+
 #content.home dl.quote dt {
     font-family: georgia,times,serif;
-    font-size: 140%;
+    font-size: 120%;
     color: #333;
 }
 #content.home dl.quote dd {
@@ -186,8 +227,11 @@ a.screenshot {
 }
 #content.home dl.quote dd.source {
     font-weight: bold;
-    font-size: 110%;
+    font-size: 100%;
     margin-top: 12px;
+}
+#content.home dl.quote dd.company {
+    font-size: 90%;
 }
 
 #content h2 {
