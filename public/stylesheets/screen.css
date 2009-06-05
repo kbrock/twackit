@@ -283,7 +283,7 @@ table.calendar th.monthName {
     text-align: left;
 }
 table.calendar tr.dayName th {
-    background: #333 url(/images/grain-black.png);
+    background: #333;
     border: 1px solid #333;
     color: #fff;
     font-size: 70%;
