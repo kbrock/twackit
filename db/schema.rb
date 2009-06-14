@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090429215327) do
+ActiveRecord::Schema.define(:version => 20090614184922) do
 
   create_table "hashtags", :force => true do |t|
     t.integer "tweet_id", :null => false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20090429215327) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "tweets", :force => true do |t|
-    t.integer  "status_id",                      :null => false
+    t.text     "status_id",                      :null => false
     t.datetime "status_at",                      :null => false
     t.text     "from_user",                      :null => false
     t.text     "status_text",                    :null => false
