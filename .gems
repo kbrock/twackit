@@ -1,7 +1,7 @@
-crack
-httparty
-oauth
 mash
-jnunemaker-twitter --source http://gems.github.com
+crack
+oauth
+httparty
+jnunemaker-twitter --version 0.6.11 --source http://gems.github.com
 haml --version 2.0.9
 mislav-will_paginate --source http://gems.github.com

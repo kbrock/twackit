@@ -10,7 +10,7 @@ class TwitterImporter
         Rails.logger.info "Searching for new tweets since status #{since_id}"
 
         # fetch all new tweets
-        searcher = twitter_searcher.to(TWITTER_ID).since(since_id).per_page(per_page)
+        searcher = twitter_searcher.referencing(TWITTER_ID).since(since_id).per_page(per_page)
         search_results = fetch_pages(per_page) do |page|
           searcher.page(page).fetch.results
         end
