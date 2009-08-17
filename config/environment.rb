@@ -21,7 +21,8 @@ Rails::Initializer.run do |config|
   # note: need to add gems to .gems for heroku
   config.gem "crack"
   config.gem "httparty"
-  config.gem "jnunemaker-twitter", :lib => 'twitter', :source => "http://gems.github.com"
+  config.gem "oauth", :version => '0.3.4'
+  config.gem "jnunemaker-twitter", :version => '0.6.11', :lib => 'twitter', :source => "http://gems.github.com"
   config.gem 'haml', :version => '2.0.9'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   

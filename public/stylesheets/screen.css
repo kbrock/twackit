@@ -362,6 +362,7 @@ table.calendar td.today {
 .report.show .report-container .data {
 }
 .report.show #timeline {
+  height: 300px;
 }
 .report.show #calendar {
     padding-top: 2em;    
