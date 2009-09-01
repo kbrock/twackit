@@ -19,9 +19,10 @@ Rails::Initializer.run do |config|
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)
   
   # note: need to add gems to .gems for heroku
-  config.gem "crack"
-  config.gem "httparty"
+  config.gem 'mash', :version => '0.0.3'
+  config.gem "crack", :version => '0.1.4'
   config.gem "oauth", :version => '0.3.4'
+  config.gem "httparty", :version => '0.4.3'
   config.gem "jnunemaker-twitter", :version => '0.6.15', :lib => 'twitter', :source => "http://gems.github.com"
   config.gem 'haml', :version => '2.2.3'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
