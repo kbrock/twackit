@@ -18,10 +18,12 @@ module ApplicationHelper
     'Make the bird happy.',
     'Make birdy happy.',
     'The bird is watching.',
+    'Join the club.',
     'Love the bird.',
     'Be excellent.',
     'Be cool.',
     'Spread the love.',
+    'Spread the seed.',
     'Tell your friends.',
     'Birdy loves you.',
     'Impress the bird.'

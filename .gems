@@ -3,5 +3,5 @@ crack
 oauth --version 0.3.4
 httparty
 jnunemaker-twitter --version 0.6.11 --source http://gems.github.com
-haml --version 2.0.9
+haml --version 2.2.3
 mislav-will_paginate --source http://gems.github.com

@@ -1,7 +1,8 @@
 class Tweet < ActiveRecord::Base
-  HASHTAGS_RE = /#\S+\b/         # a pound-sign followed by one or more non-space characters to word boundary
-  VALUE_RE = /[-+]?\d[\d\.,]*/   # an optionally signed digit followed by zero or more digits, decimal points, or commas
-
+  HASHTAGS_RE = /#\S+\b/            # a pound-sign followed by one or more non-space characters to word boundary
+  VALUE_RE    = /[-+]?\d[\d\.,]*/   # an optionally signed digit followed by zero or more digits, decimal points, or commas
+  DATE_RE     = /(0?[1-9]|1[012])[- \/.](0?[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d{2}/
+  
   # TODO Switch to has_many :through so we have canonical, reusable hashtags? 
   # This would save storage space and  make it easier to compare data between 
   # users with same hashtag.
@@ -42,7 +43,7 @@ class Tweet < ActiveRecord::Base
       
       # custom parsing for pre-existing tweets
       content = tweet.status_text.dup
-      values = content.scan Tweet::VALUE_RE
+      values = content.scan Tweet::VALUE_RE      
       tweet.data = values.first if values.any?
 
       # remove hash tags
@@ -54,7 +55,7 @@ class Tweet < ActiveRecord::Base
       # truncate contiguous whitespace characters to single space
       content.gsub! /\s{2,}/, ' '
 
-      # strip leading ': '
+      # strip leading ': ' such as "@twackit: 200 #weight"
       content.gsub! /^: /, ''
       
       # whatever is left is the note
@@ -82,14 +83,22 @@ class Tweet < ActiveRecord::Base
       return if self.processed?
       # TODO handle multiple values
       
-      values = self.status_text.scan VALUE_RE
-      self.data = values.first if values.any?
+      self.data = self.status_text.scan(VALUE_RE).first
+      date = self.status_text.match(DATE_RE).to_s
+      if date
+        date = Date.parse(date) rescue nil
+        self.status_at = date if date
+      end
+      
       
       # remove @recipient
       content = self.status_text.gsub /#{AT_TWITTER_ID}\b/, ''
 
       # remove hash tags
       content.gsub! HASHTAGS_RE, ''
+      
+      # remove date
+      content.gsub! DATE_RE, ''
 
       # remove the *first* occurence of data value
       content.sub! Regexp.new(self.data), '' unless self.data.blank?

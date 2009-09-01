@@ -20,7 +20,7 @@ class TweetTest < ActiveSupport::TestCase
     # this stuff gets parsed from status_text
     assert_equal 'this is a note', tweet.note
     assert_equal '175', tweet.data
-    assert_equal ['weight', 'tag2'], tweet.hashtags.map(&:value)
+    assert_equal ['tag2', 'weight'], tweet.hashtags.map(&:value).sort
   end
   
   test "build_for_status with value after hashtag" do
@@ -42,6 +42,27 @@ class TweetTest < ActiveSupport::TestCase
     assert_equal 'this is a note', tweet.note
     assert_equal '175', tweet.data
     assert_equal ['weight'], tweet.hashtags.map(&:value)
+  end
+  
+  test "build_for_status with date" do
+    status = OpenStruct.new(
+        :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
+        :from_user => 'doctorzaius',
+        :text => '@twackit 7.5 this is a note 5/30/1977 #weight',
+        :iso_language_code => 'en')
+        
+    tweet = Tweet.build_for_status status
+    tweet.save!
+    
+    assert tweet.processed?
+    assert_equal 'doctorzaius', tweet.from_user
+    assert_equal 'en', tweet.language
+    
+    # this stuff gets parsed from status_text
+    assert_equal 'this is a note', tweet.note
+    assert_equal '7.5', tweet.data
+    assert_equal ['weight'], tweet.hashtags.map(&:value)
+    assert_equal Date.new(1977, 5, 30), tweet.status_at.to_date
   end
   
   test "with spaces" do

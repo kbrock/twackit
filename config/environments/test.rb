@@ -28,3 +28,5 @@ config.action_mailer.delivery_method = :test
 config.active_record.schema_format = :sql
 
 config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
+# config.gem 'jferris-mocha', :lib => 'mocha', :source => 'http://gems.github.com', :version => '0.9.5.0.1241126838'
+config.gem 'mocha'

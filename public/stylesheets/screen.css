@@ -132,6 +132,7 @@ body {
 
 #content #tweet_this_page {
     float: right;
+    margin-right: 2em;
 }
 #content #tweet_this_page a span {
     color: #333;
@@ -235,14 +236,13 @@ body {
 }
 
 #content h2 {
-    font-size: 220%;
+    font-size: 200%;
     line-height: .9em;
     width: 60%;
     font-weight: normal;
-    font-family: Georgia, Times, serif;
-    color: #333;
-    margin-bottom: .5em;
-    letter-spacing: -2px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #444;
+    margin-bottom: .75em;
 }
 #content h2 img {
     vertical-align: middle;
