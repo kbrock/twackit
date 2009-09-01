@@ -1,6 +1,6 @@
 mash --version 0.0.3
 crack --version 0.1.4
-oauth --version 0.3.4
+oauth --version 0.3.5
 httparty --version 0.4.3
 jnunemaker-twitter --version 0.6.15 --source http://gems.github.com
 haml --version 2.2.3

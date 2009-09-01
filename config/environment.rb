@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   # note: need to add gems to .gems for heroku
   config.gem 'mash', :version => '0.0.3'
   config.gem "crack", :version => '0.1.4'
-  config.gem "oauth", :version => '0.3.4'
+  config.gem "oauth", :version => '0.3.5'
   config.gem "httparty", :version => '0.4.3'
   config.gem "jnunemaker-twitter", :version => '0.6.15', :lib => 'twitter', :source => "http://gems.github.com"
   config.gem 'haml', :version => '2.2.3'
