@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   
   def tweet_this_page(locals={})
-    locals[:status] ||= 'Whatever it is, track it with Twackit! http://twackit.com'
+    locals[:status] ||= 'Whatever it is, track it with Twackit! http://www.twackit.com'
     render :partial => 'layouts/tweet_this_page', :locals => locals
   end
   
