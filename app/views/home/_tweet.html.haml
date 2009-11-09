@@ -1,2 +1,8 @@
 %blockquote.tweet
-  %p= yield
+  %p
+    - if tweet.twitterer
+      - if tweet.twitterer.picture_url.blank?
+        = link_to "@#{tweet.twitterer.username}", tweet.twitterer.profile_url
+      - else
+        = link_to image_tag(tweet.twitterer.picture_url, :alt => "@#{tweet.twitterer.username}", :width => 48, :height => 48, :align => 'left', :valign => 'middle'), tweet.twitterer.profile_url
+    = status_text_with_report_links tweet

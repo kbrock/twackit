@@ -30,18 +30,13 @@
   in different ways.
 
 
-
 %h3 What are other people twacking?
+%p
+  Click the hashtags to see their reports.
 %ol
   - for tweet in @recent_tweets
     %li
-      = partial 'tweet' do
-        - if tweet.twitterer
-          - if tweet.twitterer.picture_url.blank?
-            = link_to "@#{tweet.twitterer.username}", tweet.twitterer.picture_url
-          - else
-            = link_to image_tag(tweet.twitterer.picture_url, :alt => "@#{tweet.twitterer.username}"), tweet.twitterer.profile_url
-        = status_text_with_report_links tweet
+      = partial 'tweet', :object => tweet
 
 
 %br

@@ -252,7 +252,7 @@ body {
 }
 #content.home h3 {
   font-size: 120%;
-  margin: 1em 0;
+  margin: 2em 0 .5em 0;
 }
 #content.faq h3 {
     font-size: 120%;
@@ -330,12 +330,17 @@ table.calendar td.today {
     width: 500px;
     margin: .5em 0;
     padding: .5em;
+    background: #f8f8f8;
     border: 2px solid #eee;
     font-family: monaco,consolas,'courier new',courier,monospace;
+    min-height: 48px;
 }
 #content blockquote.tweet p {
     margin: 0 !important;
     width: 100% !important;
+}
+#content blockquote.tweet p img {
+    margin-right: 8px;
 }
 
 .highlight {

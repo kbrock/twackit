@@ -10,11 +10,8 @@ class Twitterer < ActiveRecord::Base
   
   class << self
     def with_username username
-      twitterer = find_by_username username
-      twitterer ||= Twitterer.new :username => username
-      
+      twitterer = find_by_username(username) || Twitterer.new(:username => username)      
       twitterer.update_values! if twitterer.stale?
-
       twitterer
     end
     
@@ -25,7 +22,7 @@ class Twitterer < ActiveRecord::Base
   end
 
   def stale?
-    new_record? || updated_at < 1.day.ago
+    new_record? || updated_at < 90.days.ago
   end
   
   def update_values!
