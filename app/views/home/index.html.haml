@@ -9,41 +9,40 @@
   %p.caption
     Once you've started twacking, see your report at
     = succeed '.' do
-      %strong.highlight http://twackit.com/<abbr title="Your Twitter username">username</abbr>/<abbr title="A hashtag you twacked with, such as 'weight'">hashtag</abbr>
+      %strong.highlight http://www.twackit.com/<abbr title="Your Twitter username">username</abbr>/<abbr title="A hashtag you twacked with, such as 'weight'">hashtag</abbr>
 
   = partial 'quote'
   
 %p  
   %strong
     Just tweet a numeric value and hashtag to 
-    == #{link_to '@twackit', 'http://twitter.com/twackit'}.      
+    #{link_to '@twackit', 'http://twitter.com/twackit'}.      
   You don&#8217;t need to sign up for anything, and it&#8217;s totally free!
 %p
-  Twackit will find your tweets and generate simple reports.      
+  Twackit will find your tweets and generate simple reports.
   Twack as many different things as you like &mdash; just pick meaningful hashtags to 
   %strong categorize 
-  your twacks. You can even include a 
+  your twacks, and even include a
   %strong note 
-  if you&#8217;d like!
-    
-%p
-  Here are some examples to help you get started&hellip;
-
-= partial 'tweet' do
-  @twackit 165 #weight
-= partial 'tweet' do
-  @twackit 37 #mpg a lot of highway driving this week!
-
-%br
-%p
+  if you&#8217;d like.
   Use more than one hashtag if you want to 
   %strong drill down 
   in different ways.
 
-= partial 'tweet' do
-  @twackit 1.50 #expenses #tolls
-= partial 'tweet' do
-  @twackit 7.35 #expenses #lunch Mel's Diner
+
+
+%h3 What are other people twacking?
+%ol
+  - for tweet in @recent_tweets
+    %li
+      = partial 'tweet' do
+        - if tweet.twitterer
+          - if tweet.twitterer.picture_url.blank?
+            = link_to "@#{tweet.twitterer.username}", tweet.twitterer.picture_url
+          - else
+            = link_to image_tag(tweet.twitterer.picture_url, :alt => "@#{tweet.twitterer.username}"), tweet.twitterer.profile_url
+        = status_text_with_report_links tweet
+
 
 %br
 %p

@@ -18,14 +18,15 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)
   
-  # note: need to add gems to .gems for heroku
+  # When gem dependencies change, update the Heroku .gems manifest:
+  #   rake gem:heroku_spec 
   config.gem 'mash', :version => '0.0.3'
   config.gem "crack", :version => '0.1.4'
   config.gem "oauth", :version => '0.3.5'
   config.gem "httparty", :version => '0.4.3'
-  config.gem "jnunemaker-twitter", :version => '0.6.15', :lib => 'twitter', :source => "http://gems.github.com"
-  config.gem 'haml', :version => '2.2.3'
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem "twitter", :version => '0.7.3'
+  config.gem 'haml', :version => '2.2.10'
+  config.gem 'will_paginate', :version => '2.3.11'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

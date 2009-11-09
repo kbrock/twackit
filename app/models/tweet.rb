@@ -7,6 +7,7 @@ class Tweet < ActiveRecord::Base
   # This would save storage space and  make it easier to compare data between 
   # users with same hashtag.
   has_many :hashtags, :dependent => :destroy
+  # belongs_to :twitterer, :foreign_key => 'from_user', :primary_key => 'username'
 
   validates_presence_of :status_id, :status_at, :from_user, :status_text, :data
   
@@ -23,6 +24,10 @@ class Tweet < ActiveRecord::Base
       }
     }
 
+  named_scope :recent, :order => 'created_at desc', :limit => 5,
+      :include => :hashtags,
+      :joins => :hashtags,
+      :conditions => "hashtags.value is not null"
 
   class << self    
     # Find the latest (most recent) Twitter status ID that we've fetched.
@@ -68,10 +73,13 @@ class Tweet < ActiveRecord::Base
     end
   end # class methods 
   
-  
   def value
     # TODO handle more complex data types, time durations, multiple values, etc?
     data.to_f
+  end
+  
+  def twitterer
+    Twitterer.with_username self.from_user
   end
   
   protected
@@ -85,9 +93,16 @@ class Tweet < ActiveRecord::Base
       
       self.data = self.status_text.scan(VALUE_RE).first
       date = self.status_text.match(DATE_RE).to_s
+      date = Date.parse(date) rescue nil if date
       if date
-        date = Date.parse(date) rescue nil
-        self.status_at = date if date
+        # handle stupid 2-digit years
+        if date.year < 40
+          date = Date.new(date.year+2000, date.month, date.day)
+        elsif date.year < 100
+          date = Date.new(date.year+1900, date.month, date.day)
+        end
+        
+        self.status_at = date
       end
       
       

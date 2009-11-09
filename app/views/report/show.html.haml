@@ -18,13 +18,11 @@
     = succeed '.' do
       %span.pronoun
 %h2
-  - twitter_profile_url = "http://twitter.com/#{@report.twitterer.username}"
-
   = succeed '&#8217;s' do
     - if @report.twitterer.picture_url.blank?
-      = link_to @report.twitterer.full_name, @report.twitterer.picture_url
+      = link_to @report.twitterer.full_name, @report.twitterer.profile_url
     - else 
-      = link_to image_tag(@report.twitterer.picture_url, :alt => @report.picture_description) + @report.twitterer.full_name, twitter_profile_url
+      = link_to image_tag(@report.twitterer.picture_url, :alt => @report.picture_description) + @report.twitterer.full_name, @report.twitterer.profile_url
   = @report.title  
   Report
 

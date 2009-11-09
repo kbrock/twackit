@@ -1,7 +1,6 @@
-mash --version 0.0.3
-crack --version 0.1.4
-oauth --version 0.3.5
-httparty --version 0.4.3
-jnunemaker-twitter --version 0.6.15 --source http://gems.github.com
-haml --version 2.2.3
-mislav-will_paginate --source http://gems.github.com
+mash --version '= 0.0.3'
+crack --version '= 0.1.4'
+oauth --version '= 0.3.5'
+httparty --version '= 0.4.3'
+twitter --version '= 0.7.3'
+will_paginate --version '= 2.3.11'

@@ -34,6 +34,8 @@ body {
     background: #ccc;
     margin: 0;
     padding: 1em;
+    text-shadow: 0 1px 1px #fff;
+    font-weight: bold;
 
     -moz-border-radius-bottomleft: 8px;
     -moz-border-radius-bottomright: 8px;
@@ -140,7 +142,6 @@ body {
 }
 #content #tweet_this_page a {
     font-weight: bold;
-    font-family: georgia,times,serif;
     background: url(/images/twitter.png) no-repeat 0 50%;
     padding: 4px 8px 4px 34px;
     margin-right: -8px;
@@ -243,12 +244,16 @@ body {
     font-family: 'Georgia', 'Times New Roman', serif;
     color: #444;
     margin-bottom: .75em;
+    letter-spacing: -2px;
 }
 #content h2 img {
     vertical-align: middle;
     padding-right: 8px;
 }
-
+#content.home h3 {
+  font-size: 120%;
+  margin: 1em 0;
+}
 #content.faq h3 {
     font-size: 120%;
     font-weight: bold;
@@ -322,16 +327,11 @@ table.calendar td.today {
 }
 
 #content blockquote.tweet {
-    width: 32em; 
+    width: 500px;
     margin: .5em 0;
     padding: .5em;
-    background: #f4f4f4;
+    border: 2px solid #eee;
     font-family: monaco,consolas,'courier new',courier,monospace;
-    border-style: none solid solid none;
-    border-width: 2px;
-    border-color: #eee;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
 }
 #content blockquote.tweet p {
     margin: 0 !important;

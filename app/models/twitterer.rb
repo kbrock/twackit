@@ -30,7 +30,7 @@ class Twitterer < ActiveRecord::Base
   
   def update_values!
     twitter_user = self.twitter_user
-    raise InvalidTwitterUsername if twitter_user.nil?
+    raise InvalidTwitterUsername.new(self.username) if twitter_user.nil?
 
     self.full_name = twitter_user.name
     self.picture_url = twitter_user.profile_image_url
@@ -42,12 +42,16 @@ class Twitterer < ActiveRecord::Base
     Tweet.for_report self.username, hashtag
   end
   
+  def profile_url
+    "http://twitter.com/#{username}"
+  end
+  
   protected
   
     # Use the Twitter API to fetch a representation of the Twitter user, which
     # includes attributes like #name and #profile_image_url.
     def twitter_user
-      u = Twitter.user(self.username) rescue nil
+      u = Twitter.user(self.username) #rescue nil
       return u unless u && u.error?
     end
     memoize :twitter_user
