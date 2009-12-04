@@ -22,7 +22,7 @@ class Twitterer < ActiveRecord::Base
   end
 
   def stale?
-    new_record? || updated_at < 90.days.ago
+    new_record? #|| updated_at < 30.days.ago
   end
   
   def update_values!
