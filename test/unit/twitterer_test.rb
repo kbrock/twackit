@@ -22,7 +22,7 @@ class TwittererTest < ActiveSupport::TestCase
     assert !twitterer.stale?
 
     twitterer.updated_at = 1.day.ago
-    assert twitterer.stale?    
+    assert !twitterer.stale?, "only consider new records stale for now, avoiding too many API queries"
   end
   
   test "with_username creates new record for unknown username" do
@@ -46,16 +46,16 @@ class TwittererTest < ActiveSupport::TestCase
     assert !twitterer.stale?
   end
   
-  test "with_username for stale record updates values" do
-    twitterer = Factory :twitterer, 
-        :username => 'doctorzaius', :full_name => 'Old', :updated_at => 1.1.days.ago
-    assert twitterer.stale?, 'because updated_at more than a day ago'
-    found = Twitterer.with_username 'doctorzaius'
-    assert_equal twitterer, found
-    assert_equal 'Doctor Z', found.full_name
-    assert found.updated_at - twitterer.updated_at > 1.day
-    assert !found.stale?
-  end
+  # test "with_username for stale record updates values" do
+  #   twitterer = Factory :twitterer, 
+  #       :username => 'doctorzaius', :full_name => 'Old', :updated_at => 1.1.days.ago
+  #   assert twitterer.stale?, 'because updated_at more than a day ago'
+  #   found = Twitterer.with_username 'doctorzaius'
+  #   assert_equal twitterer, found
+  #   assert_equal 'Doctor Z', found.full_name
+  #   assert found.updated_at - twitterer.updated_at > 1.day
+  #   assert !found.stale?
+  # end
 
   test "with_username given invalid username raises" do
     Twitterer.any_instance.stubs(:twitter_user).returns(nil)
