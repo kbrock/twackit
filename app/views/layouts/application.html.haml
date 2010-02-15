@@ -1,26 +1,26 @@
 !!! Strict
 %html{ :xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en', :lang => 'en' }
   %head
-    
+
     %meta{ 'name' => 'description', 'content' => 'Use your Twitter account to track any metric and observe trends over time. Twackit will find your tweets and generate simple reports.' }
-    %meta{ 'http-equiv' => 'Content-Type', 'content' => 'text/html;charset=utf-8' }  
-    
+    %meta{ 'http-equiv' => 'Content-Type', 'content' => 'text/html;charset=utf-8' }
+
     %title
-      Twackit - 
+      Twackit -
       = yield(:page_title) || 'Whatever it is, track it with Twackit!'
 
     %link{ :rel => 'shortcut icon', :href => '/favicon.ico', :type => 'image/x-icon' }
     = stylesheet_link_tag 'reset', 'screen', 'lightbox', :cache => true
     = javascript_include_tag 'prototype', 'effects', 'builder', 'lightbox', 'application', :cache => true
-    
+
     - unless @javascripts.blank?
       - for javascript in @javascripts
         %script{ :type => 'text/javascript', :src => javascript }
-        
+
     - unless @styles.blank?
       - for style in @styles
         %link{ :rel => 'stylesheet', :href => style, :type => 'text/css', :media => 'screen' }
-    
+
   %body
     #page
       #header
@@ -34,21 +34,21 @@
               = text_field_tag :hashtag, @hashtag || 'your twacking hashtag', :onfocus => 'this.select();'
               = submit_tag 'Report', :name => nil
 
-  
+
         %h1= link_to 'Twackit', root_path
         %p.tagline Whatever it is, track it with Twackit!
-    
+
       #content{ :class => [controller.controller_name, controller.action_name].join(' ') }
-      
+
         - unless flash[:error].blank?
           %p.flash.error
             = flash[:error]
-    		
+
         = yield
 
       #footer
         %p
-          Copyright &copy; 
+          Copyright &copy;
           == #{Date.today.year}, #{link_to 'Jeremy Weiskotten', 'http://weiskotten.com'}.
           %strong
             %a.feedback{ feedback_page } Feedback
