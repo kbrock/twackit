@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def enable_analytics?
-    'production' == RAILS_ENV
+    Rails.env.production? && ENV['GOOGLE_ANALYTICS_ACCOUNT_ID'].present?
   end
   
   def tweet_this_page(locals={})
