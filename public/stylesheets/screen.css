@@ -240,11 +240,11 @@ body {
     font-size: 200%;
     line-height: .9em;
     width: 60%;
-    font-weight: normal;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: bold;
+    font-family: 'Helvetica', sans-serif;
     color: #444;
     margin-bottom: .75em;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
 }
 #content h2 img {
     vertical-align: middle;
