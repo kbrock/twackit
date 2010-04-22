@@ -51,12 +51,13 @@ class TwitterImporter
         tweet = yield r
 
         # Don't fail too noisily... we want to continue processing!
-        if tweet.save
-          tweets[i] = tweet
-        else
-          # TODO send error to hoptoad/exceptional?
-          Rails.logger.error "Failed to save tweet: #{tweet.errors.full_messages.join('.')}"
-        end
+        tweet.save!
+        # if tweet.save
+        #   tweets[i] = tweet
+        # else
+        #   # TODO send error to hoptoad/exceptional?
+        #   Rails.logger.error "Failed to save tweet: #{tweet.errors.full_messages.join('.')}"
+        # end
       end
       
       tweets
