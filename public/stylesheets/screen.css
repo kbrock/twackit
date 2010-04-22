@@ -366,6 +366,9 @@ table.calendar td.today {
 }
 .report.show .report-container .data {
 }
+.report.show #data_table {
+	width: 580px;
+}
 .report.show #timeline {
   height: 300px;
 }

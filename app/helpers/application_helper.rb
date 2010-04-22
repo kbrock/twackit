@@ -1,5 +1,12 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  # Options hash can specify a size: m (micro), n (normal), b (big), or o (original)
+  # See http://tweetimag.es/
+  def twitter_profile_image_url(screen_name, options={})
+    options[:size] ||= 'n'
+    "http://img.tweetimag.es/i/#{screen_name}_#{options[:size]}"
+  end
+
   def title(t)
     content_for :page_title, t
   end

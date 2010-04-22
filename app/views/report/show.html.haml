@@ -19,10 +19,9 @@
       %span.pronoun
 %h2
   = succeed '&#8217;s' do
-    - if @report.twitterer.picture_url.blank?
-      = link_to @report.twitterer.full_name, @report.twitterer.profile_url
-    - else 
-      = link_to image_tag(@report.twitterer.picture_url, :alt => @report.picture_description) + @report.twitterer.full_name, @report.twitterer.profile_url
+    %a{ :href => @report.twitterer.profile_url }
+      %img{ :src => twitter_profile_image_url(@report.twitterer.username), :alt => "#{@report.picture_description}", :height => 48, :width => 48 }
+      = @report.twitterer.full_name
   = @report.title  
   Report
 
