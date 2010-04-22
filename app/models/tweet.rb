@@ -32,7 +32,7 @@ class Tweet < ActiveRecord::Base
   class << self    
     # Find the latest (most recent) Twitter status ID that we've fetched.
     def latest_id
-      first(:order => 'status_id desc').status_id rescue nil
+      first(:order => 'id desc').status_id rescue nil
     end
 
     def build_for_status status
