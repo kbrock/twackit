@@ -24,7 +24,7 @@ class Tweet < ActiveRecord::Base
       }
     }
 
-  named_scope :recent, :order => 'created_at desc', :limit => 5,
+  named_scope :recent, :order => 'status_at desc', :limit => 5,
       :include => :hashtags,
       :joins => :hashtags,
       :conditions => "hashtags.value is not null"
