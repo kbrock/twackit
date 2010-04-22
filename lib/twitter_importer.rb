@@ -51,6 +51,7 @@ class TwitterImporter
         tweet = yield r
 
         # Don't fail too noisily... we want to continue processing!
+        puts tweet.inspect
         tweet.save!
         # if tweet.save
         #   tweets[i] = tweet
