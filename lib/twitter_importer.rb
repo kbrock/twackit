@@ -30,7 +30,7 @@ class TwitterImporter
       import!(per_page)
       
       import_logging do
-        searcher = Twitter::Search.new.per_page(per_page).from(username).hashed(hashtag)
+        searcher = twitter_searcher.per_page(per_page).from(username).hashed(hashtag)
         search_results = fetch_pages(per_page) do |page|
           searcher.page(page).fetch.results
         end
