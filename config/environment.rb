@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -12,7 +12,7 @@ Rails::Initializer.run do |config|
   # -- all .rb files in that directory are automatically loaded.
 
   # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  # config.autoload_paths += %W( #{RAILS_ROOT}/extras )
 
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
@@ -20,13 +20,6 @@ Rails::Initializer.run do |config|
   
   # When gem dependencies change, update the Heroku .gems manifest:
   #   rake gem:heroku_spec 
-  config.gem 'mash', :version => '0.0.3'
-  config.gem "crack", :version => '0.1.4'
-  config.gem "oauth", :version => '0.3.5'
-  config.gem "httparty", :version => '0.4.3'
-  config.gem "twitter", :version => '0.7.3'
-  config.gem 'haml', :version => '2.2.10'
-  config.gem 'will_paginate', :version => '2.3.11'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

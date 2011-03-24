@@ -2,9 +2,7 @@ $:.reject! { |e| e.include? 'TextMate' }
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
-require 'mocha'
 require 'redgreen' unless ENV['TM_MODE']
-require File.expand_path(File.dirname(__FILE__) + "/factories")
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
