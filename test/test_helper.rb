@@ -4,6 +4,9 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require 'redgreen' unless ENV['TM_MODE']
 
+#catch unintentional calls to object.id
+Object.send(:undef_method, :id) if Object.respond_to?(:id)
+
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the

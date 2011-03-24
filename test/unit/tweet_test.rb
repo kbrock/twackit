@@ -1,14 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'ostruct'
 
 class TweetTest < ActiveSupport::TestCase
   test "build_for_status and save" do
-    # mock a status objects returned by the Twitter search API 
-    status = OpenStruct.new(
-        :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
-        :from_user => 'doctorzaius',
-        :text => '@twackit 175 #weight #tag2 this is a note',
-        :iso_language_code => 'en')
+    status = Factory(:status, :text => '@twackit 175 #weight #tag2 this is a note')
         
     tweet = Tweet.build_for_status status    
     tweet.save!
@@ -24,12 +18,7 @@ class TweetTest < ActiveSupport::TestCase
   end
   
   test "build_for_status with value after hashtag" do
-    # mock a status objects returned by the Twitter search API 
-    status = OpenStruct.new(
-        :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
-        :from_user => 'doctorzaius',
-        :text => '@twackit #weight 175 this is a note',
-        :iso_language_code => 'en')
+    status = Factory(:status, :text => '@twackit #weight 175 this is a note')
         
     tweet = Tweet.build_for_status status    
     tweet.save!
@@ -45,11 +34,7 @@ class TweetTest < ActiveSupport::TestCase
   end
   
   test "build_for_status with date" do
-    status = OpenStruct.new(
-        :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
-        :from_user => 'doctorzaius',
-        :text => '@twackit 7.5 this is a note 5/30/1977 #weight',
-        :iso_language_code => 'en')
+    status = Factory(:status, :text => '@twackit 7.5 this is a note 5/30/1977 #weight')
         
     tweet = Tweet.build_for_status status
     tweet.save!
@@ -66,12 +51,7 @@ class TweetTest < ActiveSupport::TestCase
   end
   
   test "with spaces" do
-    # mock a status objects returned by the Twitter search API 
-    status = OpenStruct.new(
-        :created_at => Time.utc(2009, 4, 29, 19, 6, 33),
-        :from_user => 'doctorzaius',
-        :text => '@twackit  180            #calories  Banana Pudding Ice Cream',
-        :iso_language_code => 'en')
+    status = Factory(:status, :text => '@twackit  180            #calories  Banana Pudding Ice Cream')
 
     tweet = Tweet.build_for_status status    
     tweet.save!
