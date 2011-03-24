@@ -34,7 +34,7 @@ module ApplicationHelper
     'Tell your friends.',
     'Birdy loves you.',
     'Impress the bird.'
-    ].rand    
+    ].sample
   end
   
   def feedback_page
