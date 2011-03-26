@@ -92,6 +92,8 @@ class Tweet < ActiveRecord::Base
       # TODO handle multiple values
       
       self.data = self.status_text.scan(VALUE_RE).first
+      self.float_data = self.data.to_f if self.data =~ /^[0-9.]+$/
+
       date = self.status_text.match(DATE_RE).to_s
       date = Date.parse(date) rescue nil if date
       if date
@@ -104,7 +106,6 @@ class Tweet < ActiveRecord::Base
         
         self.status_at = date
       end
-      
       
       # remove @recipient
       content = self.status_text.gsub /#{AT_TWITTER_ID}\b/, ''

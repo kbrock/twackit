@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090614184922) do
+ActiveRecord::Schema.define(:version => 20110326142907) do
 
   create_table "hashtags", :force => true do |t|
     t.integer "tweet_id", :null => false
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20090614184922) do
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "float_data"
   end
 
   add_index "tweets", ["processed"], :name => "index_tweets_on_processed"
