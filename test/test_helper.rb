@@ -6,6 +6,7 @@ require 'redgreen' unless ENV['TM_MODE']
 
 #catch unintentional calls to object.id
 Object.send(:undef_method, :id) if Object.respond_to?(:id)
+NilClass.send(:undef_method, :id) if NilClass.respond_to?(:id)
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
