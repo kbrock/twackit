@@ -16,6 +16,11 @@ class ReportTest < ActiveSupport::TestCase
       Report.new :twitterer => 'bogus', :hashtag => 'foo'
     end
   end
+
+  test "doesnt complain for unknown tag" do
+    Factory :twitterer, :username => 'doctorzaius', :full_name => 'Doctor Zaius'
+    Report.new :twitterer => 'doctorzaius', :hashtag => 'foo'
+  end
   
   test "picture_description" do
     Factory :twitterer, :username => 'doctorzaius', :full_name => 'Doctor Zaius'
@@ -34,6 +39,4 @@ class ReportTest < ActiveSupport::TestCase
     report = Report.new :twitterer => 'doctorzaius', :hashtag => 'weight', :title => 'My Title'
     assert_equal 'My Title', report.title
   end
-  
-  
 end
