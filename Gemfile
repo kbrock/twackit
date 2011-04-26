@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'rails', '2.3.11'
 gem 'mash', '0.0.3'
 gem 'crack', '0.1.4'
