@@ -34,7 +34,7 @@
 %p
   Click the hashtags to see their reports.
 %ol
-  - for tweet in @recent_tweets
+  - @recent_tweets.each do |tweet|
     %li
       = partial 'tweet', :object => tweet
 

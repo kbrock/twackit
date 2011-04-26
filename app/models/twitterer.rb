@@ -7,19 +7,6 @@ class Twitterer < ActiveRecord::Base
   validates_presence_of :full_name
   
   validates_uniqueness_of :username
-  
-  class << self
-    def with_username username
-      twitterer = find_by_username(username) || Twitterer.new(:username => username)      
-      twitterer.update_values! if twitterer.stale?
-      twitterer
-    end
-    
-    # def report options
-    #   options[:twitterer] = username
-    #   Report.new options
-    # end    
-  end
 
   def stale?
     new_record? #|| updated_at < 30.days.ago
@@ -43,13 +30,19 @@ class Twitterer < ActiveRecord::Base
     "http://twitter.com/#{username}"
   end
   
+  def self.with_username username
+    twitterer = find_by_username(username) || Twitterer.new(:username => username)
+    twitterer.update_values! if twitterer.stale?
+    twitterer
+  end
+
   protected
   
-    # Use the Twitter API to fetch a representation of the Twitter user, which
-    # includes attributes like #name and #profile_image_url.
-    def twitter_user
-      u = Twitter.user(self.username) #rescue nil
-      return u unless u && u.error?
-    end
-    memoize :twitter_user
+  # Use the Twitter API to fetch a representation of the Twitter user, which
+  # includes attributes like #name and #profile_image_url.
+  def twitter_user
+    u = Twitter.user(self.username) #rescue nil
+    return u unless u && u.error?
+  end
+  memoize :twitter_user
 end
