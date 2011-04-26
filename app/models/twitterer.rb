@@ -22,10 +22,6 @@ class Twitterer < ActiveRecord::Base
     self.save!
   end
 
-  def tweets hashtag
-    Tweet.for_report self.username, hashtag
-  end
-  
   def profile_url
     "http://twitter.com/#{username}"
   end

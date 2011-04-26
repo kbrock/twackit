@@ -9,9 +9,14 @@ class TwittererTest < ActiveSupport::TestCase
     Factory :tweet, :from_user => 'bob', :status_text => '@twackit 100 #expenses #lunch'
     Factory :tweet, :from_user => 'bob', :status_text => '@twackit 1.25 #expenses #tolls'
     Factory :tweet, :from_user => 'bob', :status_text => '@twackit 35 #mpg'
-    
-    assert_equal 2, twitterer.tweets('expenses').size
-    assert_equal 1, twitterer.tweets('tolls').size
+
+    assert exp_tag = Hashtag.find_by_value('expenses')
+    assert tolls_tag = Hashtag.find_by_value('tolls')
+
+    assert_equal ['expenses','lunch','tolls','mpg'].sort, Hashtag.all.map(&:value).sort
+
+    assert_equal 2, exp_tag.tweets.size
+    assert_equal 1, tolls_tag.tweets.size
   end
   
   test "stale?" do

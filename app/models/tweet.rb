@@ -6,28 +6,30 @@ class Tweet < ActiveRecord::Base
   # TODO Switch to has_many :through so we have canonical, reusable hashtags? 
   # This would save storage space and  make it easier to compare data between 
   # users with same hashtag.
-  has_many :hashtags, :dependent => :destroy
+  has_many :hashtags, :through => :tweet_tags
+  has_many :tweet_tags, :dependent => :destroy do
+    def build_by_value(username, value)
+      tag = Hashtag.fetch_or_create(username, value)
+      self.build(:hashtag => tag)
+    end
+  end
+
   # belongs_to :twitterer, :foreign_key => 'from_user', :primary_key => 'username'
 
   validates_presence_of :status_id, :status_at, :from_user, :status_text, :data
   
   before_validation_on_create :parse_status
-  after_create :create_hashtags
+  before_create :create_hashtags
 
   validates_uniqueness_of :status_id
-  
-  named_scope :for_report, lambda { |twitter_user, hashtag|
-      { 
-        :joins => :hashtags, 
-        :conditions => ["from_user=? and hashtags.value=?", twitter_user, hashtag],
-        :order => 'status_at desc' 
-      }
-    }
 
+  #TODO: Re tagless: should we even store entries w/o a tag?
+  #TODO: maybe we shouldn't even store the from user in tweet
   named_scope :recent, :order => 'status_at desc', :limit => 5,
-      :include => :hashtags,
-      :joins => :hashtags,
-      :conditions => "hashtags.value is not null"
+      :include => :tweet_tags,
+      :conditions => {:tagless => false}
+
+  named_scope :recent_first, :order => 'status_at desc'
 
   class << self    
     # Find the latest (most recent) Twitter status ID that we've fetched.
@@ -128,10 +130,14 @@ class Tweet < ActiveRecord::Base
       self.processed = true
     end
 
-    # after_create
+    # before_create
     def create_hashtags
+      empty=true
       self.status_text.scan(HASHTAGS_RE).each do |v|
-        self.hashtags.create!(:value => v.delete('#'))
+        empty=false
+        self.tweet_tags.build_by_value(self.from_user, v.delete('#'))
       end
+      self.tagless=empty
+      true
     end
 end

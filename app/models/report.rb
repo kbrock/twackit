@@ -9,10 +9,11 @@ class Report
     
     @hashtag = attribs[:hashtag]    
     @twitterer = Twitterer.with_username attribs[:twitterer]
+    @tag = @twitterer.nil? ? nil : Hashtag.fetch(@twitterer.username, @hashtag)
 
     @title = attribs[:title] ||= attribs[:hashtag].titleize
 
-    @tweets = @twitterer.tweets(self.hashtag)
+    @tweets = @tag ? @tag.tweets.recent_first : []
   end  
   
   # Returns data in a structure consumable by a Google Visualization DataTable. 

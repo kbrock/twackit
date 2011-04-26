@@ -74,9 +74,9 @@ class TweetTest < ActiveSupport::TestCase
     tweet = create_tweet(text)
 
     assert tweet.processed?
+    assert_equal expected.delete(:hashtag_value).sort, tweet.hashtags.map(&:value).sort if expected[:hashtag_value]
     assert_equal expected.delete(:status_at), tweet.status_at.to_date if expected[:status_at]
 
-    assert_equal expected[:hashtag_value].sort, tweet.hashtags.map(&:value).sort
     expected.each_pair do |key,value|
       assert_equal value, tweet.send(key)
     end

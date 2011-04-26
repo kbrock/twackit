@@ -30,7 +30,8 @@ class ReportController < ApplicationController
   def import
     user = params[:u]
     hashtag = params[:t]
-    count_before_import = Tweet.for_report(user, hashtag).count
+    tag = Hashtag.fetch(user, hashtag)
+    count_before_import = tag.tweets.count
 
     begin
       # import new stuff
@@ -43,7 +44,7 @@ class ReportController < ApplicationController
     delta = 0
     if import && import.tweets > 0
       # We found something, but any new stuff from this person?
-      count_after_import = Tweet.uncached { Tweet.for_report(user, hashtag).count }
+      count_after_import = Tweet.uncached { tag.tweets.count }
       delta = count_after_import - count_before_import
     end
 
