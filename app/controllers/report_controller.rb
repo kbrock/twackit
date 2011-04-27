@@ -30,7 +30,7 @@ class ReportController < ApplicationController
   def import
     user = params[:u]
     hashtag = params[:t]
-    tag = Hashtag.fetch(user, hashtag)
+    tag = Hashtag.fetch_or_create(user, hashtag)
     count_before_import = tag.tweets.count
 
     begin

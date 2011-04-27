@@ -8,6 +8,8 @@ class Twitterer < ActiveRecord::Base
   
   validates_uniqueness_of :username
 
+  has_many :hashtags, :primary_key => :username, :foreign_key => :username
+
   def stale?
     new_record? #|| updated_at < 30.days.ago
   end
