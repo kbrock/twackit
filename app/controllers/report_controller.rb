@@ -1,30 +1,24 @@
 class ReportController < ApplicationController
   # Dummy action to handle report form at top of page, just redirects to proper URL.
   def redirector
-    twitterer = params[:twitterer].gsub('@', '').strip
-    hashtag = params[:hashtag].gsub('#', '').strip
-
-    redirect_to report_path(:twitterer => twitterer, :hashtag => hashtag), :status => :moved_permanently
+    @tag = Hashtag.fetch(params[:twitterer], params[:hashtag])
+    redirect_to report_path(:twitterer => @tag.username, :hashtag => @tag.tag), :status => :moved_permanently
   end
   
   def show
-    @twitterer = params[:twitterer].gsub('@', '').strip
-    @hashtag = params[:hashtag].gsub('#', '').strip
-    
-    if @hashtag != params[:hashtag] || @twitterer != params[:twitterer]
-      # clean up the URL
-      redirect_to report_path(:twitterer => @twitterer, :hashtag => @hashtag), :status => :moved_permanently
+    @tag = Hashtag.fetch(params[:twitterer], params[:hashtag])
+    if @tag.cleaned_up?
+      redirect_to report_path(:twitterer => @tag.username, :hashtag => @tag.tag), :status => :moved_permanently
       return
     end
-    
-    @report = Report.new :twitterer => @twitterer, :hashtag => @hashtag
+    @report = Report.new :tag => @tag
     
     # Determine whether the page should do a background search for new tweets.
     # If it's been at least 60s since the last import, do it.
     @background_search = Import.stale?
   rescue InvalidTwitterUsername
-    flash[:error] = "Couldn't find a Twitterer named #{fancy_quote @twitterer}."
-    redirect_to faq_path
+   flash[:error] = "Couldn't find a Twitterer named #{params[:twitterer]}."
+   redirect_to faq_path
   end
 
   def import
@@ -50,5 +44,4 @@ class ReportController < ApplicationController
 
     render :json => delta.to_json
   end
-  
 end

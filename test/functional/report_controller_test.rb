@@ -14,8 +14,9 @@ class ReportControllerTest < ActionController::TestCase
     get 'show', :twitterer => 'doctorzaius', :hashtag => 'weight'
     assert_response :ok
 
-    assert_equal 'doctorzaius', assigns(:twitterer)
-    assert_equal 'weight', assigns(:hashtag)
+    assert_not_nil assigns(:tag)
+    assert_equal 'doctorzaius', assigns(:tag).username
+    assert_equal 'weight', assigns(:tag).tag
     assert_not_nil assigns(:report)
     assert_equal true, assigns(:background_search)
   end
@@ -48,8 +49,6 @@ class ReportControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to faq_path
 
-    assert_equal 'bob', assigns(:twitterer)
-    assert_equal 'weight', assigns(:hashtag)
     assert_nil assigns(:report)
     assert_nil assigns(:background_search)    
   end

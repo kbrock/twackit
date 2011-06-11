@@ -29,9 +29,9 @@
           - form_tag to_report_path, :method => :get do
             %p
               http://www.twackit.com/
-              = text_field_tag :twitterer, @twitterer || 'your Twitter username', :onfocus => 'this.select();'
+              = text_field_tag :twitterer, @tag.try(:username) || 'your Twitter username', :onfocus => 'this.select();'
               = '/'
-              = text_field_tag :hashtag, @hashtag || 'your twacking hashtag', :onfocus => 'this.select();'
+              = text_field_tag :hashtag, @tag.try(:tag) || 'your twacking hashtag', :onfocus => 'this.select();'
               = submit_tag 'Report', :name => nil
 
 

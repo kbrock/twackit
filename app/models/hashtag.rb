@@ -1,5 +1,6 @@
 class Hashtag < ActiveRecord::Base
 
+  attr_accessor :cleaned_up
   has_many :tweet_tags
   has_many :tweets, :through => :tweet_tags
   #belongs_to :twitterer, :foreign_key => :username, :primary_key => :username
@@ -10,8 +11,17 @@ class Hashtag < ActiveRecord::Base
     value
   end
 
+  #the tag/username were cleaned up
+  def cleaned_up?
+    cleaned_up != false
+  end
+
   def twitterer
     @twitterer ||= Twitterer.with_username self.username
+  end
+
+  def tag
+    value
   end
 
   def self.fetch_or_create(username, value)
@@ -19,7 +29,17 @@ class Hashtag < ActiveRecord::Base
   end
 
   # used for reporting. don't need to create a tag, but the entity must be represented
-  def self.with_name_tag(username, value)
-    find_by_username_and_value(username,value)||new(:username => username, :value => value)
+  def self.fetch(username, tag)
+    raise ArgumentError, 'hashtag must be specified' if username.blank?
+    raise ArgumentError, 'twitterer must be specified' if tag.blank?
+
+    u = username.gsub('@', '').strip
+    t = tag.gsub('#', '').strip
+    cleaned_up=(u != username || t != tag)
+
+    tag=find_by_username_and_value(u,t)||new(:username => u, :value => t, :cleaned_up =>cleaned_up)
+    #get this out of here
+    raise InvalidTwitterUsername.new(u) if tag.twitterer.nil?
+    tag
   end
 end

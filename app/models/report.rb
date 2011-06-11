@@ -1,24 +1,39 @@
 class Report
   extend ActiveSupport::Memoizable
   
-  attr_reader :tweets, :tag, :title
+  attr_reader :tag, :title
   def initialize(attribs)
-    raise ArgumentError, 'hashtag must be specified' if attribs[:hashtag].blank?
-    raise ArgumentError, 'twitterer must be specified' if attribs[:twitterer].blank?
-    
-    @tag = Hashtag.with_name_tag(attribs[:twitterer], attribs[:hashtag])
+    if attribs[:tag]
+      @tag = attribs[:tag]
+    else
+      @tag = Hashtag.fetch(attribs[:twitterer], attribs[:hashtag])
+    end
 
-    @title = attribs[:title] ||= @tag.value.titleize
-
-    @tweets = @tag ? @tag.tweets.recent_first : []
+    @title = attribs[:title] || @tag.value.titleize
   end  
 
   def hashtag
     @tag.value
   end
-  
+
+  def username
+    @tag.username
+  end
+
   def twitterer
     @tag.twitterer
+  end
+
+  def tweets
+    @tweets ||= @tag ? @tag.tweets.recent_first : []
+  end
+
+  def tweets?
+    tweets.any?
+  end
+
+  def last_updated?
+    tweets.last.try(:status_at)
   end
 
   # Returns data in a structure consumable by a Google Visualization DataTable. 
