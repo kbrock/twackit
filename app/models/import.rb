@@ -7,12 +7,8 @@ class Import < ActiveRecord::Base
 
   named_scope :by_most_recent, :order => 'created_at desc'
 
-  class << self
-    # Was the last import more than a minute ago?
-    def stale?
-      most_recent = by_most_recent.first
-      most_recent.nil? || most_recent.created_at < 60.seconds.ago
-    end
+  def self.stale?
+    most_recent = by_most_recent.first
+    most_recent.nil? || most_recent.created_at < 60.seconds.ago
   end
-  
 end
