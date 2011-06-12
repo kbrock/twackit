@@ -10,10 +10,12 @@ gem 'httparty', '0.4.3'
 gem 'twitter', '0.7.3'
 gem 'haml', '3.0.25'
 
-gem 'factory_girl', :group => :test
-gem 'mocha', :group => :test
-#maybe put in !ENV['TM_MODE'] or something in require statement?
-gem 'redgreen', :require => false, :group => :test
+group :test do
+  gem 'factory_girl'
+  gem 'mocha'
+  #maybe put in !ENV['TM_MODE'] or something in require statement?
+  gem 'redgreen', :require => false
+end
 
 
 # gem 'ruby-debug'
