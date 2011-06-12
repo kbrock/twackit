@@ -1,5 +1,3 @@
-# SQLite version 3.x
-#   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: postgresql
   database: twackit_development
@@ -7,6 +5,7 @@ development:
   username: postgres
   password:
   pool: 5
+  min_messages: warning
 
 
 # Warning: The database defined as "test" will be erased and

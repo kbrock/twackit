@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'pg'
 gem 'rails', '2.3.11'
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem 'pg'
 gem 'mash', '0.0.3'
 gem 'crack', '0.1.4'
 gem 'oauth', '0.3.5'
@@ -14,3 +15,6 @@ gem 'factory_girl', :group => :test
 gem 'mocha', :group => :test
 #maybe put in !ENV['TM_MODE'] or something in require statement?
 gem 'redgreen', :require => false, :group => :test
+
+
+# gem 'ruby-debug'
