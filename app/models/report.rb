@@ -57,6 +57,10 @@ class Report
      
     { :cols => cols, :rows => rows }
   end
+
+  def json_data
+    visualization_data.to_json.html_safe
+  end
   
   def picture_description
     "#{twitterer.full_name}'s Twitter profile picture"

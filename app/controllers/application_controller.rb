@@ -14,4 +14,6 @@ class ApplicationController < ActionController::Base
   def log_request
     PageRequest.log(session[:session_id],cookies, request)
   end
+
+  #protect_from_forgery
 end

@@ -73,7 +73,7 @@
   var hashtag = #{@report.hashtag.to_json};
   var backgroundSearch = #{@background_search.to_json};
 
-  vizData = #{@report.visualization_data.to_json};  
+  vizData = #{@report.json_data};
   google.load('visualization', '1', {'packages':['annotatedtimeline', 'table']});
   google.setOnLoadCallback(initViz);
 
