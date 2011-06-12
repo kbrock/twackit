@@ -10,7 +10,7 @@ module ReportHelper
   end
   
   def link_to_tweet(t)
-    link_to t.value, url_for_status(t), :popup => true
+    link_to t.value, url_for_status(t), 'data-popup' => 'true'
   end
   
   def searching_indicator_options

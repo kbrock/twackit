@@ -20,13 +20,13 @@
     - unless @styles.blank?
       - for style in @styles
         %link{ :rel => 'stylesheet', :href => style, :type => 'text/css', :media => 'screen' }
-
+    = csrf_meta_tag
   %body
     #page
       #header
 
         #report-form
-          - form_tag to_report_path, :method => :get do
+          = form_tag to_report_path, :method => :get do
             %p
               http://www.twackit.com/
               = text_field_tag :twitterer, @tag.try(:username) || 'your Twitter username', :onfocus => 'this.select();'

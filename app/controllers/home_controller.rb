@@ -3,6 +3,6 @@ class HomeController < ApplicationController
     @recent_tweets = Tweet.recent
   end
 
-  def faq    
+  def faq
   end
 end
