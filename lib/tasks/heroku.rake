@@ -11,7 +11,8 @@ namespace :gems do
     gems = Rails.configuration.gems
     
     # output .gems
-    dot_gems = File.join(RAILS_ROOT, ".gems")
+    raise "wtf, Rails.root is not set" unless Rails.root.present?
+    dot_gems = File.join(Rails.root, ".gems")
     File.open(dot_gems, "w") do |f|
       output = []
       gems.each do |gem|
