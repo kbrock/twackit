@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def fancy_quote(str)
-    "&#147;#{str}&#148;"
+    "&#147;#{str}&#148;".html_safe
   end
 
 

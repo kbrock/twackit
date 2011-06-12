@@ -12,6 +12,8 @@ gem 'haml', '3.1.2'
 
 #temporary for upgrade
 gem 'rdoc', '2.4.3'
+gem 'erubis'
+gem 'rails_xss'
 
 group :test do
   gem 'factory_girl'

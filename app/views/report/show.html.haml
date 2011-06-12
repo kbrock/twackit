@@ -18,7 +18,7 @@
     = succeed '.' do
       %span.pronoun
 %h2
-  = succeed '&#8217;s' do
+  = succeed '&#8217;s'.html_safe do
     %a{ :href => @report.twitterer.profile_url }
       %img{ :src => twitter_profile_image_url(@report.username), :alt => "#{@report.picture_description}", :height => 48, :width => 48 }
       = @report.twitterer.full_name

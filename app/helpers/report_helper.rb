@@ -6,7 +6,7 @@ module ReportHelper
       tweets = tweets_by_date[d]
       values = '<ul class="values"><li>' + tweets.map { |t| link_to_tweet(t) }.join('</li><li>') + '</li></ul>' unless tweets.blank?
       ["<span>#{d.mday}</span>#{values}"]
-    end
+    end.html_safe
   end
   
   def link_to_tweet(t)
