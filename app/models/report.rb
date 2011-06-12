@@ -32,7 +32,7 @@ class Report
     tweets.any?
   end
 
-  def last_updated?
+  def last_updated
     tweets.last.try(:status_at)
   end
 

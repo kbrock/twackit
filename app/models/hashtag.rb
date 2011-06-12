@@ -13,7 +13,7 @@ class Hashtag < ActiveRecord::Base
 
   #the tag/username were cleaned up
   def cleaned_up?
-    cleaned_up != false
+    cleaned_up == true
   end
 
   def twitterer
