@@ -1,4 +1,5 @@
 development:
+  <% if true %>
   adapter: postgresql
   database: twackit_development
   host: localhost
@@ -6,7 +7,11 @@ development:
   password:
   pool: 5
   min_messages: warning
-
+  <% else %>
+  adapter: sqlite3
+  database: db/development.db 
+  timeout: 5000
+  <% end %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

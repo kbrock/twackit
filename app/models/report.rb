@@ -63,7 +63,7 @@ class Report
   end
   
   def tweets_by_date
-    @tweets.group_by { |t| t.status_at.to_date }
+    tweets.group_by { |t| t.status_at.to_date }
   end
   memoize :tweets_by_date
   
