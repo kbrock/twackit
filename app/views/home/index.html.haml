@@ -11,7 +11,7 @@
     = succeed '.' do
       %strong.highlight http://www.twackit.com/<abbr title="Your Twitter username">username</abbr>/<abbr title="A hashtag you twacked with, such as 'weight'">hashtag</abbr>
 
-  = partial 'quote'
+  = render :partial => 'quote'
   
 %p  
   %strong
@@ -36,7 +36,7 @@
 %ol
   - @recent_tweets.each do |tweet|
     %li
-      = partial 'tweet', :object => tweet
+      = render :partial => 'tweet', :object => tweet
 
 
 %br
