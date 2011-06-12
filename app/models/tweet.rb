@@ -23,13 +23,11 @@ class Tweet < ActiveRecord::Base
 
   validates_uniqueness_of :status_id
 
+  named_scope :recent_first, ('status_at desc')
+
   #TODO: Re tagless: should we even store entries w/o a tag?
   #TODO: maybe we shouldn't even store the from user in tweet
-  named_scope :recent, :order => 'status_at desc', :limit => 5,
-      :include => :tweet_tags,
-      :conditions => {:tagless => false}
-
-  named_scope :recent_first, :order => 'status_at desc'
+  named_scope :recent, where(:tagless => false).includes(:tweet_tags).order('status_at desc').limit(5)
 
   class << self    
     # Find the latest (most recent) Twitter status ID that we've fetched.

@@ -15,6 +15,8 @@ GEM
     crack (0.1.8)
     erubis (2.7.0)
     factory_girl (1.3.3)
+    fake_arel (0.9.9)
+      activerecord (>= 2.3.5)
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
@@ -63,6 +65,7 @@ DEPENDENCIES
   crack (= 0.1.8)
   erubis
   factory_girl
+  fake_arel
   haml (= 3.1.2)
   httparty (~> 0.7.8)
   mash (= 0.1.1)
