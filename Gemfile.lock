@@ -39,7 +39,6 @@ GEM
       httparty (~> 0.4.3)
       mash (~> 0.0.3)
       oauth (~> 0.3.5)
-    will_paginate (2.3.15)
 
 PLATFORMS
   ruby
@@ -56,4 +55,3 @@ DEPENDENCIES
   rails (= 2.3.11)
   redgreen
   twitter (= 0.7.3)
-  will_paginate (= 2.3.15)
