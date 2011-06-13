@@ -1,7 +1,4 @@
 class Time
-  def to_json(options={})
-    self
-  end
   def as_json(options = {})
     self
   end

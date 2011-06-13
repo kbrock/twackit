@@ -39,4 +39,8 @@ class ReportTest < ActiveSupport::TestCase
     report = Report.new :twitterer => 'doctorzaius', :hashtag => 'weight', :title => 'My Title'
     assert_equal 'My Title', report.title
   end
+
+  test "properly serializes date in json" do
+    assert_equal '{"a":new Date(2011, 0, 1)}'.gsub(' ',''), {:a => Date.new(2011,1,1)}.to_json.gsub(' ','')
+  end
 end
