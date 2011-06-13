@@ -10,9 +10,9 @@ class TwitterImporter
         Rails.logger.info "Searching for new tweets since status #{since_id}"
 
         # fetch all new tweets
-        searcher = twitter_searcher.referencing(TWITTER_ID).since(since_id).per_page(per_page)
+        searcher = twitter_searcher.mentioning(TWITTER_ID).since_id(since_id).per_page(per_page)
         search_results = fetch_pages(per_page) do |page|
-          searcher.page(page).fetch.results
+          searcher.page(page).fetch
         end
 
         # TODO: Fetch direct messages?
@@ -32,7 +32,7 @@ class TwitterImporter
       import_logging do
         searcher = twitter_searcher.per_page(per_page).from(username).hashed(hashtag)
         search_results = fetch_pages(per_page) do |page|
-          searcher.page(page).fetch.results
+          searcher.page(page).fetch
         end
         
         create_tweets(search_results) { |status| Tweet.build_for_retro_status(status) }
