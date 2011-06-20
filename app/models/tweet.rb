@@ -8,8 +8,8 @@ class Tweet < ActiveRecord::Base
   # users with same hashtag.
   has_many :hashtags, :through => :tweet_tags
   has_many :tweet_tags, :dependent => :destroy do
-    def build_by_value(username, value)
-      tag = Hashtag.fetch_or_create(username, value)
+    def build_by_value(value)
+      tag = Hashtag.fetch_or_create(proxy_owner.from_user, value)
       self.build(:hashtag => tag)
     end
   end
@@ -133,7 +133,7 @@ class Tweet < ActiveRecord::Base
       empty=true
       self.status_text.scan(HASHTAGS_RE).each do |v|
         empty=false
-        self.tweet_tags.build_by_value(self.from_user, v.delete('#'))
+        self.tweet_tags.build_by_value(v)
       end
       self.tagless=empty
       true
