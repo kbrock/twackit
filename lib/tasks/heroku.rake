@@ -12,7 +12,7 @@ namespace :gems do
     
     # output .gems
     raise "wtf, Rails.root is not set" unless Rails.root.present?
-    dot_gems = File.join(Rails.root, ".gems")
+    dot_gems = Rails.root.join(".gems")
     File.open(dot_gems, "w") do |f|
       output = []
       gems.each do |gem|
